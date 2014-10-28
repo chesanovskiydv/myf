@@ -13,12 +13,5 @@ class Model extends DB
     {
         return $this->data;
     }
-    
-    //Перенаправление на страницу
-    public static function redirect($controller_action)
-    {
-        $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
-        header('Location:'.$host.$controller_action);
-    }
 }
 ?>

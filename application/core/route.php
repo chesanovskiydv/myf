@@ -75,5 +75,12 @@ class Route
         header("Status: 404 Not Found");
         header('Location:'.$host.'404');
     }
+    
+    //Перенаправление на страницу
+    public static function redirect($controller_action)
+    {
+        $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
+        header('Location:'.$host.$controller_action);
+    }
 }
 ?>

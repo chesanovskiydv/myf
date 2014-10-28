@@ -32,7 +32,6 @@ class Auth extends DB
         unset($_SESSION['id']);
         unset($_SESSION['login']);
         unset($_SESSION['password']);
-        Model::redirect('auth');
     }
 	//регистрация
 	public function registration($login, $password, $password_confirm)

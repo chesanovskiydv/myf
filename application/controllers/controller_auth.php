@@ -23,7 +23,7 @@ class Controller_Auth extends Controller
             
             if($Auth_model->authentication($_POST['login'], $_POST['password']))
             {
-				Model::redirect('');
+                Route::redirect('');
              //   $this->view->generate('auth_view.php', 'template_view.php');
 				return true;
             }
@@ -48,7 +48,7 @@ class Controller_Auth extends Controller
 
 			$Auth_model->registration($_POST['login'], $_POST['password'], $_POST['password_confirm']);
 			$_SESSION['success'] = 'Регистрация прошла успешно';
-			Model::redirect('auth');
+			Route::redirect('auth');
 			//	$this->view->generate('auth_view.php', 'template_view.php');
 			return true;
 			
@@ -61,7 +61,7 @@ class Controller_Auth extends Controller
     {
         $Auth_model = new Auth();
         $Auth_model->LogOut();   
-        $this->view->generate('auth_view.php', 'template_view.php');
+        Route::redirect('auth');
     }
 }
 ?>
