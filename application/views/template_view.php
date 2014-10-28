@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="../../css/style.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/auth.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/topmenu.css" />
+	<script type="text/javascript" src="../../js/main.js"></script>
     <title>MyF</title>
 </head>
 <body>

@@ -18,10 +18,22 @@
 }
 .login_container
 {
-	float: right;
 	width: 30px;
 	line-height: 30px;
 	position: absolute;
-	right: 20px;
+	right: 40px;
 	top: 0px;
+	background: inherit;
+	width: 80px;
+	text-align: center;
+	cursor: pointer;
+}
+.login_container ul {
+	display: none;
+}
+.caret {
+	border-top: 4px solid #000;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+	content: "";
 }
