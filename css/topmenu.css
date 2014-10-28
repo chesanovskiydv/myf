@@ -1,0 +1,27 @@
+.top_bar {
+	background: #000066;
+	height: 30px;
+	position: relative;
+	width: 100%;
+}
+.header_menu {
+	text-align: center;
+	position: relative;
+	height: 100%;
+	line-height: 30px;
+	width: 900px;
+	margin: 0 auto;
+}
+.header_menu li {
+	display: inline-block;
+	margin-left: 20px;
+}
+.login_container
+{
+	float: right;
+	width: 30px;
+	line-height: 30px;
+	position: absolute;
+	right: 20px;
+	top: 0px;
+}

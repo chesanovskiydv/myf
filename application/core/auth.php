@@ -34,6 +34,32 @@ class Auth extends DB
         unset($_SESSION['password']);
         Model::redirect('auth');
     }
+	//регистрация
+	public function registration($login, $password, $password_confirm)
+	{
+		if($password == $password_confirm)
+		{
+			if(!$this->authentication($login, $password))
+			{
+				$password=md5($password);
+				$this->sql_insert(array(
+									'table' => 'users', 
+									'columns' => "login,password",
+									'values' => "'".$login."', '".$password."'",
+								));
+				return true;
+			}
+			else
+			{
+				$data['error'] = 'Такие логин и пароль уже существуют';
+			}
+		}
+		else
+		{
+			$data['error'] = 'Пароль и подтверждение не совпадают!';
+		}
+		return $data;
+	}
     
 
 }
