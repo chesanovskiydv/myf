@@ -7,6 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="../../css/style.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/auth.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/topmenu.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/comments.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/comments_view.css" />
 	<script type="text/javascript" src="../../js/main.js"></script>
     <title>MyF</title>
 </head>

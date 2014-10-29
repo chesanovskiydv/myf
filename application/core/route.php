@@ -24,6 +24,8 @@ class Route
         // добавляем префиксы
         $model_name = 'Model_'.$controller_name;
         $controller_name = 'Controller_'.$controller_name;
+		$before_action_name = 'before_action_'.$action_name;
+		$after_action_name = 'after_action_'.$action_name;
         $action_name = 'action_'.$action_name;
 
         // подцепляем файл с классом модели (файла модели может и не быть)
@@ -55,16 +57,27 @@ class Route
         $controller = new $controller_name;
         $action = $action_name;
         
-        if(method_exists($controller, $action))
+		
+        if(method_exists($controller, $before_action_name))
+        {
+            // вызываем действие контроллера перед основным
+           $controller->$before_action_name();
+        }      
+		if(method_exists($controller, $action))
         {
             // вызываем действие контроллера
             $controller->$action();
         }
-        else
+		else
         {
             // здесь также разумнее было бы кинуть исключение
             Route::ErrorPage404();
         }
+		if(method_exists($controller, $after_action_name))
+        {
+            // вызываем действие контроллера перед основным
+           $controller->$after_action_name();
+        } 
     
     }
     

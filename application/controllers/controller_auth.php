@@ -40,7 +40,7 @@ class Controller_Auth extends Controller
 	}
 	//регистрация
 	function action_registration()
-	{	
+	{
 		if(!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['password_confirm']))
 		{
 			//авторизация
@@ -56,7 +56,7 @@ class Controller_Auth extends Controller
 		$this->view->generate('registration_view.php', 'template_view.php');
 		return true;
 	}
-    
+
     function action_logout()
     {
         $Auth_model = new Auth();

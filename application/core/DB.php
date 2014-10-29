@@ -12,16 +12,20 @@ class DB extends DB_Connect{
      *   array (
      *       'columns' => "*", //столбцы
      *        'table' => 'test'  //таблица
+	 * 		  'nameParam' => 'login, password',
+     *        'valParam' => "'".$login."', '".$password."'",
+	 *		  'sign' => "=",
      *   );  
      */
 	public function sql_select($array)
 	{
 		$columns = "*";
+		$sign = "=";
 		extract($array); 
 		$query = "SELECT ".$columns." FROM ".$table;
         if(isset($nameParam) && isset($valParam))
            {
-            $query .= " WHERE (".$nameParam.") = (".$valParam.")";   
+			$query .= " WHERE (".$nameParam.") ".$sign." (".$valParam.")";   
            }
 		$res = $this->db->query($query);
 		$count=0;
