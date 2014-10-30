@@ -5,7 +5,7 @@ class Controller_Comments extends Controller
 	function __construct()
 	{
 		$this->model = new Model_Comments();
-		$this->view = new View();
+		parent::__construct();
 	}
 
 	function action_index()
@@ -15,27 +15,23 @@ class Controller_Comments extends Controller
 			'table' => 'comments',
 		);
 		$data = $this->model->sql_select($query);
-		/*
-		$id_string = null;
-		foreach($data as $key=>$val)
+		$queryUsers = array (
+			'columns' => 'id,login',
+			'table' => 'users',
+		);
+		$users = $this->model->sql_select($queryUsers);
+		foreach($data as &$value)
 		{
-			$id_string .=$val['author_id'];
-			if($key<count($data)-1)
+			foreach($users as $valUsers)
 			{
-				$id_string .=',';
+				if($value['author_id'] == $valUsers['id'])
+				{
+					$value['author_id'] = $valUsers['login'];
+					break;
+				}
 			}
 		}
-		
-		$query_author = array (
-			'columns' => 'login',
-			'table' => 'users',
-			'nameParam' => 'id',
-			'sign' => 'in',
-			'valParam' => $id_string
-		);
-		$login_array = $this->model->sql_select($query_author);
-		print_r($login_array);
-		*/
+		unset($value);
 		$this->view->generate('comments_view.php', 'template_view.php', $data);
 	}
 	
@@ -53,6 +49,6 @@ class Controller_Comments extends Controller
 		}
 		$this->view->generate('comments_create.php', 'template_view.php');
 	}
-
+	
 }
 ?>

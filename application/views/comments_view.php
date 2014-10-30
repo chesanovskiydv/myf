@@ -13,7 +13,7 @@
 	<tbody>
 	<?php 
 	$tmp=1;
-	foreach($data as $key=>$value) { ?>
+	foreach($data as $value) { ?>
 		<tr>
 			<td nowrap><?php echo $tmp ?></td>
 			<td class="grey"><?php echo $value['author_id'] ?></td>

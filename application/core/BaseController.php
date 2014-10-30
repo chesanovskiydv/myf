@@ -6,9 +6,9 @@ class BaseController
 	public $view;
 
 	//Конструктор
-	function __construct()
+	function __construct($info)
 	{
-		$this->view = new View();
+		$this->view = new View($info);
 	}
 
 	//Метод before_action_index — это действие, вызываемое перед действием action_index, перекрывается при необходимости.
