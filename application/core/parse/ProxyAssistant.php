@@ -2,9 +2,8 @@
 require_once 'ArrayAssistant.php';
 
 class ProxyAssistant extends ArrayAssistant
-{
-	private static $_loader;
-	
+{	
+
 	protected $options = array(
 							'checkProxies' => true,
 							);
@@ -42,7 +41,7 @@ class ProxyAssistant extends ArrayAssistant
 	{
 	
 	}
-	
+	/*
 	public static function init()
 	{		
 		if (self::$_loader == NULL) {
@@ -50,15 +49,27 @@ class ProxyAssistant extends ArrayAssistant
 		}
 		return self::$_loader;
 	}
+	*/
+	
+		public static function init($className=__CLASS__)
+	{
+		return parent::init($className);
+	}
 }
+
 $w= array(
 	'checkProxies' => false,
 	);
+	
 //$a = new ProxyAssistant;
 //$b=$a->FileToArray('\\proxy\\testproxy.txt');
-$b=ProxyAssistant::init()->FileToArray('\\proxy\\testproxy.txt', $w);
-print_r($b);
+
+
 $b=ProxyAssistant::init()->FileToArray('\\proxy\\testproxy.txt');
 print_r($b);
+
+$b=ArrayAssistant::init()->FileToArray('\\proxy\\testproxy.txt');
+print_r($b);
+
 
 ?>

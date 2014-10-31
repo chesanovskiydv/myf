@@ -3,6 +3,7 @@
 class ArrayAssistant
 {
 	private static $_loader;
+	//private static $_loader=array();;
 		
 	public function FileToArray($filename)
 	{
@@ -20,24 +21,29 @@ class ArrayAssistant
 		return $ar;
 	}
 		
-	public function saveArrayInFile($array)
+	public function saveArrayToFile($array)
 	{
 	
 	}
-	
+	/*
 	public static function init()
 	{		
 		if (self::$_loader == NULL) {
 			self::$_loader = new self();
 		}
 		return self::$_loader;
-		
 	}
+	*/
+	
+		public static function init($className=__CLASS__)
+	{
+		if(isset(self::$_loader[$className]))
+			return self::$_loader[$className];
+		else
+		{
+			return self::$_loader[$className]=new $className();
+		}
+	}
+	
 }
-
-//$a = new ProxyAssistant;
-//$b=$a->FileToArray('\\proxy\\testproxy.txt');
-//$b=ArrayAssistant::init()->FileToArray('\\proxy\\testproxy.txt', $w);
-//print_r($b);
-
 ?>
