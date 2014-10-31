@@ -2,6 +2,7 @@
 //Класс для работы с БД MySQL
 class DB extends DB_Connect{
 
+	private static $_loader;
 	// Конструктор
 	public function __construct($dbo=NULL)
 	{
@@ -88,6 +89,14 @@ class DB extends DB_Connect{
         return $this->db->query($query) ? true : false;
         //Возвращает true при удачном завершении операции и false при не удачном
     }
+	
+	public static function init($dbo=NULL)
+	{
+		if (self::$_loader == NULL) {
+			self::$_loader = new self($dbo);
+		}
+		return self::$_loader;
+	}
     
 }
 

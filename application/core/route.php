@@ -9,18 +9,22 @@ class Route
         
         $routes = explode('/', $_SERVER['REQUEST_URI']);
 
-        // получаем имя контроллера
-        if ( !empty($routes[1]) )
-        {	
-            $controller_name = $routes[1];
-        }
-        
-        // получаем имя экшена
-        if ( !empty($routes[2]) )
-        {
-            $action_name = $routes[2];
-        }
+		// получаем имя контроллера
+		if ( !empty($routes[1]) )
+		{	
+			$controller_name = $routes[1];
+		}
 
+		// получаем имя экшена
+		if ( !empty($routes[2]) )
+		{
+			$action_name = $routes[2];
+		}
+		//Если не залогинен пользватель - отправлять регатся или авторизовыватся
+		if(!Auth::logIn() && ($controller_name!='auth' && ($action_name!='index' || $action_name!='registration'))){
+			$controller_name='auth';
+			$action_name = 'index';
+		}
         // добавляем префиксы
         $model_name = 'Model_'.$controller_name;
         $controller_name = 'Controller_'.$controller_name;
@@ -54,31 +58,28 @@ class Route
         }
         
         // создаем контроллер
-        $controller = new $controller_name;
-        $action = $action_name;
-        
+			$controller = new $controller_name;
+			$action = $action_name;
 		
-        if(method_exists($controller, $before_action_name))
-        {
-            // вызываем действие контроллера перед основным
-           $controller->$before_action_name();
-        }      
-		if(method_exists($controller, $action))
-        {
-            // вызываем действие контроллера
-            $controller->$action();
-        }
-		else
-        {
-            // здесь также разумнее было бы кинуть исключение
-            Route::ErrorPage404();
-        }
-		if(method_exists($controller, $after_action_name))
-        {
-            // вызываем действие контроллера перед основным
-           $controller->$after_action_name();
-        } 
-    
+			if(method_exists($controller, $before_action_name))
+			{
+				// вызываем действие контроллера перед основным
+			   $controller->$before_action_name();
+			}      
+			if(method_exists($controller, $action))
+			{
+				// вызываем действие контроллера
+				$controller->$action();
+			}
+			else
+			{
+				Route::ErrorPage404();
+			}
+			if(method_exists($controller, $after_action_name))
+			{
+				// вызываем действие контроллера перед основным
+			   $controller->$after_action_name();
+			} 
     }
     
     function ErrorPage404()

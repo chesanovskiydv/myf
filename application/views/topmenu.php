@@ -10,11 +10,13 @@
 		<li><a href="/comments/create">Оставить коментарий</a></li>
 		<?php } ?>
 	</ul>
+	<?php if(Auth::LogIn()){ ?> 
 	<div class="login_container">
-	<?php echo Auth::LogIn() ? $_SESSION['login'] : null ?>
+	<?php echo $_SESSION['login'] ?>
 	<span class="caret"></span>
 	<ul>
 		<li><a href="auth/logout">Выход</a></li>
 	</ul>
 	</div>
+	<?php } ?>
 </div>

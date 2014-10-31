@@ -45,7 +45,7 @@ else
 	</p>
 
 	<!-- <p class="forgot-password"><a href="index.html">Забыл пароль?</a></p> -->
-	 <p class="forgot-password"><a href="auth/registration">Регистрация</a></p> 
+	 <p class="forgot-password"><a href="/auth/registration">Регистрация</a></p> 
 </form>
 <?php 
 }

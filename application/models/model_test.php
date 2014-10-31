@@ -31,7 +31,6 @@ class Model_Test extends Model
             'whereVal' => '3',
         );
         $this->sql_delete($query_delete_array);
-        
 		return array('return_data'=>$data);
 	}
 }
