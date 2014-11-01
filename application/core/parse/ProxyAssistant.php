@@ -8,9 +8,13 @@ class ProxyAssistant extends ArrayAssistant
 							'checkProxies' => true,
 							);
 	
-	public function FileToArray($filename, $options=null)
+	public function FileToArray($filename=null, $options=null)
 	{
-		$ar = parent::FileToArray($filename);
+	if(isset($filename))
+	{
+		$this->filename = $filename;
+	}
+		$ar = parent::FileToArray($this->filename);
 
 		if(isset($options['checkProxies']) ? $options['checkProxies'] : $this->options['checkProxies'])
 		{
@@ -36,11 +40,12 @@ class ProxyAssistant extends ArrayAssistant
 			return preg_match($proxyRegExp,$proxy) ? $proxy : false;    
 		}
 	}
-	
+	/*
 	public function saveArrayInFile($array)
 	{
 	
 	}
+	*/
 	/*
 	public static function init()
 	{		
@@ -51,7 +56,7 @@ class ProxyAssistant extends ArrayAssistant
 	}
 	*/
 	
-		public static function init($className=__CLASS__)
+	public static function init($className=__CLASS__)
 	{
 		return parent::init($className);
 	}
@@ -64,12 +69,17 @@ $w= array(
 //$a = new ProxyAssistant;
 //$b=$a->FileToArray('\\proxy\\testproxy.txt');
 
-
+//print_r(ProxyAssistant::init()->setFilename('\\proxy\\teeee.txt'));
+/*
 $b=ProxyAssistant::init()->FileToArray('\\proxy\\testproxy.txt');
 print_r($b);
-
+*/
+/*
 $b=ArrayAssistant::init()->FileToArray('\\proxy\\testproxy.txt');
 print_r($b);
-
-
+*/
+//$b=ArrayAssistant::init()->saveArrayToFile(array('dsfsdf','sdfg343'),'\\proxy\\teeee.txt');
+$b=ArrayAssistant::init()->setFilename('\proxy\testproxy.txt')->FileToArray()->setFilename('proxy\teeee.txt')->saveArrayToFile(null,null,true);
+//$b=ProxyAssistant::init()->setFilename('\\proxy\\teeee.txt')->setArray(array('qqqq3','wwww3'))->setRewrite(true)->saveArrayToFile(null,null,true);
+print_r($b);
 ?>
