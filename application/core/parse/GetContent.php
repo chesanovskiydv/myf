@@ -104,13 +104,14 @@ class GetContent
 		}
 	}
 	
-	public static function init()
-	{		
-		if (self::$_loader == NULL) {
-			self::$_loader = new self();
+	public static function init($className=__CLASS__)
+	{
+		if(isset(self::$_loader[$className]))
+			return self::$_loader[$className];
+		else
+		{
+			return self::$_loader[$className]=new $className();
 		}
-		return self::$_loader;
-		
 	}
 }
 //echo GetContent::init('https://ru.wikipedia.org/wiki/CURL', '116.0.1.129:8080', 5)->parseContent();
