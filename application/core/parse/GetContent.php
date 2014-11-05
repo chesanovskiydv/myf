@@ -88,11 +88,6 @@ class GetContent
 			if($code!='200')
 			{
 				unset($proxyArray[$j]);
-				//tmp
-				echo "<pre>";
-				print_r($proxyArray);
-				echo "</pre>";
-				//
 			}
 			$j++;
 		}while($code!='200' && $j<$countOfProxy);
@@ -117,11 +112,13 @@ class GetContent
 		}
 	}
 }
+/*
+
 $arrayOfProxy=ArrayAssistant::init()->FileToArray('\proxy\teeee.txt')->getArray();
 $ContentObj=GetContent::init()->parseContent('https://ru.wikipedia.org/wiki/CURL', $arrayOfProxy);
-if($q)
+if($ContentObj)
 {
-	ArrayAssistant::init()->saveArrayToFile('\proxy\teeee.txt',$ContentObj->getProxy(),false);
+	//ArrayAssistant::init()->saveArrayToFile('\proxy\teeee.txt',$ContentObj->getProxy(),false);
 }
 $content=$ContentObj->getContent();
 //TODO дальше после получения контента и сохранения оставшихся прокси
@@ -129,5 +126,7 @@ $content=$ContentObj->getContent();
 echo "<pre>";
 print_r($ContentObj->getProxy());
 echo "</pre>";
-$qq=GetContent::init()->parseContent('https://ru.wikipedia.org/wiki/CURL', $q->getProxy());
+$qq=GetContent::init()->parseContent('https://ru.wikipedia.org/wiki/CURL', $ContentObj->getProxy());
+
+*/
 ?>
