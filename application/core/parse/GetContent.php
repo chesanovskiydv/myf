@@ -1,4 +1,6 @@
 <?php 
+require_once 'ArrayAssistant.php';
+require_once 'Content.php';
 /**
  * GetContent - класс для получения контента страницы.
  * для работы необходим curl
@@ -11,21 +13,19 @@
 class GetContent
 {
 	private static $_loader;
-
-	protected $proxyArray;  
+ 
 	protected $AppSetings;
 	protected $curlOptions;
 
 	private $curlSession;
 
-	function __construct($URL=null, $proxyArray=null)
+	function __construct()
 	{
-		$this->proxyArray = $proxyArray; //??
 		//конфиги CUrl
 		$this->curlOptions = require('config/CurlConfig.php');
 		//Конфиги приложения
 		$this->AppSetings = require('config/AppConfig.php');
-		$this->curlOptions[CURLOPT_URL]=$URL;
+		//$this->curlOptions[CURLOPT_URL]=$URL;
 	}
 	
 	protected function setCurlOptions($proxy=null)
@@ -38,20 +38,14 @@ class GetContent
 		curl_setopt($this->curlSession, CURLOPT_PROXY, $proxy);
 	}
 	
-	public function parseContent($url=null, $proxyArray=null)
+	public function parseContent($url, $proxyArray=null)
 	{
-	if(isset($proxyArray))
-	{
-		$this->proxyArray = $proxyArray;
-	}
-		if(isset($url))
-		{
-			$this->curlOptions[CURLOPT_URL]=$url;
-		}
+		$this->curlOptions[CURLOPT_URL]=$url;
 		//номер текущего прокси
 		$j=0;
+		$countOfProxy = count($proxyArray);
 		do{
-			$proxy = isset($this->proxyArray) ? $this->proxyArray[$j] : null;
+			$proxy = isset($proxyArray) ? $proxyArray[$j] : null;
 			//счетчик попыток
 			$iterator=0;
 			do
@@ -91,12 +85,21 @@ class GetContent
 				$iterator++;
 			}
 			while($code!='200' && $iterator!==$this->AppSetings['numberOfRetries']);
+			if($code!='200')
+			{
+				unset($proxyArray[$j]);
+				//tmp
+				echo "<pre>";
+				print_r($proxyArray);
+				echo "</pre>";
+				//
+			}
 			$j++;
-		}while($code!='200' && $j<count($this->proxyArray));
+		}while($code!='200' && $j<$countOfProxy);
 		//возвращать только страницы с HTTP указаными в конфиге
 		if(in_array($code, $this->AppSetings['returnPageHTTP']))
 		{
-			return $returnContent;
+			return new Content($returnContent,array_values($proxyArray));
 		}
 		else
 		{
@@ -114,19 +117,17 @@ class GetContent
 		}
 	}
 }
-//echo GetContent::init('https://ru.wikipedia.org/wiki/CURL', '116.0.1.129:8080', 5)->parseContent();
-
-//$qqqqq = array('152.26.53.5:80','195.209.100.4:3128','94.228.205.2:8080');
-//GetContent::init()->parseContent('https://ru.wikipedia.org/wiki/CURL', $qqqqq);
-GetContent::init()->parseContent('https://ru.wikipedia.org/wiki/CURL');
-
-//GetContent::init()->parseContent('https://ru.wikipedia.org/wiki/FTP12');
-/*
-$qqqqq1 = array('152.26.53.5:80');
-$a = new GetContent('https://ru.wikipedia.org/wiki/CURL',$qqqqq1);
-$a->parseContent('https://ru.wikipedia.org/wiki/CURL',$qqqqq);
-
-$b = new GetContent;
-$b->parseContent('https://ru.wikipedia.org/wiki/FTP');
-*/
+$arrayOfProxy=ArrayAssistant::init()->FileToArray('\proxy\teeee.txt')->getArray();
+$ContentObj=GetContent::init()->parseContent('https://ru.wikipedia.org/wiki/CURL', $arrayOfProxy);
+if($q)
+{
+	ArrayAssistant::init()->saveArrayToFile('\proxy\teeee.txt',$ContentObj->getProxy(),false);
+}
+$content=$ContentObj->getContent();
+//TODO дальше после получения контента и сохранения оставшихся прокси
+//echo $k;
+echo "<pre>";
+print_r($ContentObj->getProxy());
+echo "</pre>";
+$qq=GetContent::init()->parseContent('https://ru.wikipedia.org/wiki/CURL', $q->getProxy());
 ?>

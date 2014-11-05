@@ -2,54 +2,28 @@
 /**
  * Класс для чтения файла в массив и сохранения массива в фаил
  *
- * @param string $filename Название файла
- * @param array $dataArray Текущий массив
- * @param bool $rewrite Перезаписать фаил
+ * @var array $dataArray Текущий массив
+ * @var bool $rewrite Перезаписать фаил
  */
 class ArrayLoadSaver
 {
 	private static $_loader;
 
-	//protected $filename;
 	protected $dataArray;
 	protected $rewrite;
 	
 	function __construct($ar=null, $rewrite = false)
 	{
-		//$this->setFilename($filename);
         $this->dataArray=$ar;
 		$this->setRewrite($ar);
 	}
-	/*
-	public function setFilename($filename)
-	{
-		$this->filename=$filename;
-		return $this;
-	}
-	*/
-    /*
-	public function setArray($ar)
-	{
-		$this->dataArray=$ar;
-		return $this;
-	}
-	*/
+
 	public function setRewrite($rewrite)
 	{
 		$this->rewrite=$rewrite;
 		return $this;
 	}
 	
-    /*
-	public function setArrayParam($setting)
-	{
-        foreach($setting as $key=>$value)
-        {
-            $this->$key=$value;
-        }
-		return $this;
-	}
-	*/
 	public function getArray()
 	{
 		return $this->dataArray;
@@ -63,12 +37,6 @@ class ArrayLoadSaver
  */
 	public function FileToArray($filename)
 	{
-        /*
-		if(isset($filename))
-		{
-			$this->filename = $filename;
-		}
-        */
 		$filename = dirname(__FILE__).$filename;
 		$f=fopen($filename,"rt");	
 		$j=0;
@@ -132,7 +100,7 @@ class ArrayLoadSaver
 		}
 		return $this;
 	}
-		
+	
 	public static function init($className=__CLASS__)
 	{
 		if(isset(self::$_loader[$className]))

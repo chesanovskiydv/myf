@@ -7,41 +7,89 @@ class ArrayAssistant extends ArrayLoadSaver
     protected $options = array(
         'checkRegExp' => true,
         'regExp' => array(
-            0 => '/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}:[0-9]+/'
+            'ipv4' => true,
         ),
     );
-    //регулярка для проверки
-    public function FileToArray($filename=null, $options=null)
+	
+	private $regExp = array(
+		'ipv4' => '/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}:[0-9]+/',
+	);
+
+/**
+ * Функция для преобразования данных из файла в массив
+ *
+ * @param string $filename Название файла
+ * @param array $options = array(  - Массив опций
+ *      'checkRegExp' => true,	   - Проверять ли регулярным выражением
+ *      'regExp' => array(		   - Массив настроек для каждого регулярного выражения отдельно
+ *           'ipv4' => true,	   - "название регулярки" = bool (проверять или не проверять)
+ *       ),
+ *   );
+ * @return $this
+ */
+    public function FileToArray($filename, $options=null)
     {
-        if(isset($filename))
-        {
-            $this->filename = $filename;
-        }
-        $ar = parent::FileToArray($this->filename)->getArray();
+        $ar = parent::FileToArray($filename)->getArray();
         if(isset($options['checkRegExp']) ? $options['checkRegExp'] : $this->options['checkRegExp'])
         {
-            $this->setArray($this->checkRegExp($ar));
+			$this->dataArray = $this->checkRegExp($ar,$options['regExp']);
             return $this;
         }
-        $this->setArray($ar);
+		$this->dataArray = $ar;
         return $this;
     }
 
-    public function checkRegExp($proxy)
+    public function checkRegExp($ar,$arrayOfChecks=null)
     {
-        $proxyRegExp ='/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}:[0-9]+/';
-        if(is_array($proxy))
+		if(isset($arrayOfChecks))
+		{
+			$arrayOfChecks= array_merge($this->options['regExp'],$arrayOfChecks);
+		}
+		else{
+			$arrayOfChecks= $this->options['regExp'];
+		}
+		//$arrayOfChecks = isset($arrayOfChecks) ? $arrayOfChecks : $this->options['regExp'];
+		//print_r($arrayOfChecks);
+		//? своя регулярка и замена а не смена массива
+		if(is_array($ar))
         {
-            foreach($proxy as $key=>$value)
+			foreach($ar as $key=>$value)
             {
-                if(!preg_match($proxyRegExp,$value))
-                    unset($proxy[$key]);  
+				foreach($arrayOfChecks as $nameRegExp=>$resolution)
+				{
+					if($resolution)
+					{
+						try{
+							if(!isset($this->regExp[$nameRegExp]))
+								throw new Exception("There is no such regular expression!");
+							else{
+								if(!preg_match($this->regExp[$nameRegExp],$value))
+									unset($ar[$key]);
+							}
+						}
+						catch (Exception $e) {
+							echo "Error (File: ".$e->getFile().", line ".
+								$e->getLine()."): ".$e->getMessage(), "\n";
+							return false;
+						}						
+					}
+				}
             }
-            return array_values($proxy);
+			return !empty($ar) ? array_values($ar) : null;
         }
         else
         {
-            return preg_match($proxyRegExp,$proxy) ? $proxy : false;    
+			foreach($arrayOfChecks as $nameRegExp=>$resolution)
+			{
+				if($resolution)
+				{
+					if(!preg_match($this->regExp[$nameRegExp],$ar))
+					{
+						return false;
+					}
+				}
+			}
+			return $ar;    
         }
     }
 
@@ -50,23 +98,4 @@ class ArrayAssistant extends ArrayLoadSaver
         return parent::init($className);
     }
 }
-
-$w= array(
-    'checkRegExp' => false,
-);
-
-
-//$b=ArrayLoadSaver::init()->saveArrayToFile(array('dsfsdf','sdfg343'),'\\proxy\\teeee.txt');
-//$b=ArrayLoadSaver::init()->setFilename('\proxy\testproxy.txt')->FileToArray()->setFilename('\proxy\teeee.txt')->saveArrayToFile(null,null,true);
-
-$b=ArrayLoadSaver::init()->FileToArray('\proxy\testproxy.txt')->setRewrite(true)->saveArrayToFile('\proxy\teeee.txt',array('dfdf','fdfd'));
-
-/*
-ArrayLoadSaver::init()->filename='\proxy\testproxy.txt';
-    $b=ArrayLoadSaver::init()->FileToArray()->setArrayParam(array('filename'=>'\proxy\teeee.txt', 'dataArray'=>array('qaz','asd'),'rewrite' =>true))->saveArrayToFile();
-    */
-//$b=ArrayAssistant::init()->setFilename('\\proxy\\teeee.txt')->setArray(array('qqqq3','wwww3'))->setRewrite(true)->saveArrayToFile(null,null,true);
-print_r($b);
-//$c = ArrayAssistant::init()->setFilename('\\proxy\\testproxy.txt')->FiletoArray()->getArray();
-//print_r($c);
 ?>
