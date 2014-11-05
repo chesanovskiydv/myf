@@ -52,11 +52,12 @@ class Parser
 		}
 	}
 }
+//TODO: При пустом файле проксиков, exeptions
 $a = new Parser;
 $url = array('https://ru.wikipedia.org/wiki/CURL', 'https://ru.wikipedia.org/wiki/%D0%A0%D0%B5%D0%B7%D0%B8%D0%B3,_%D0%94%D0%B6%D0%BE%D0%BD');
-$b= $a->startParse($url,'\proxy\teeee.txt');
+$b = $a->startParse($url,'\proxy\teeee.txt');
 foreach($b as $val)
 {
-echo $val;
+	echo $val;
 }
 ?>
