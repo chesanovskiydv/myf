@@ -9,6 +9,7 @@
 		<?php if(Auth::LogIn()){ ?>
 		<li><a href="/comments/create">Оставить коментарий</a></li>
 		<?php } ?>
+		<li><a href="/weather">Погода</a></li>
 	</ul>
 	<?php if(Auth::LogIn()){ ?> 
 	<div class="login_container">

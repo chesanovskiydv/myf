@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 	<script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/2.1.1/jquery.js"></script>
-	<?php if($this->info['currentController']=='comments') $this->cssScripts('comments'); ?>
+	<?php if($this->info['currentController']=='comments' or 'weather') $this->cssScripts('comments'); ?>
 	<?php $this->cssScripts()->jsScripts(); ?>
     <title>MyF</title>
 </head>

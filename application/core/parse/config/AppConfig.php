@@ -7,12 +7,12 @@
   */
 return array(
 	'numberOfRetries' => 1,
-	'showContent' => true,
+	'showContent' => false,
 	'showError' => true,
 	'showInfo' => true,
 	'info' => array(
 		CURLINFO_EFFECTIVE_URL =>array(false, ' URL: ', ";\n"),
-		CURLINFO_HTTP_CODE => array (true, ' HTTP: ', ";\n"),
+		CURLINFO_HTTP_CODE => array (false, ' HTTP: ', ";\n"),
 		CURLINFO_FILETIME => array (false, ' FILETIME: ', ";\n"),
 		CURLINFO_TOTAL_TIME => array (false, ' TOTAL TIME: ', "s;\n"),
 		CURLINFO_NAMELOOKUP_TIME => array (false, ' NAMELOOKUP UP: ', "s;\n"),

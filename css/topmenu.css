@@ -18,13 +18,11 @@
 }
 .login_container
 {
-	width: 30px;
 	line-height: 30px;
 	position: absolute;
 	right: 40px;
 	top: 0px;
 	background: inherit;
-	width: 80px;
 	text-align: center;
 	cursor: pointer;
 }

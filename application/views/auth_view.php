@@ -20,7 +20,7 @@ else
 
 	<p>
 		<label for="login">Логин:</label>
-		<input type="text" name="login" id="login" value="login1">
+		<input type="text" name="login" id="login" value="<?php echo empty($_POST['login']) ? 'login1' : $_POST['login'] ?>">
 	</p>
 
 	<p>

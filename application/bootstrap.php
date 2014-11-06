@@ -4,6 +4,7 @@ function my_autoloader($class) {
 }
 spl_autoload_register('my_autoloader');
 
+require_once 'core/parse/Parser.php';
 require_once 'core/config.php';
 require_once 'core/DB_connect.php';
 require_once 'core/DB.php';
