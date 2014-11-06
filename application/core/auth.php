@@ -38,7 +38,7 @@ class Auth extends DB
 	{
 		if($password == $password_confirm)
 		{
-			if(!$this->authentication($login, $password))
+			if(!$this->checkAuth($login, $password))
 			{
 				$password=md5($password);
 				$this->sql_insert(array(
@@ -60,6 +60,20 @@ class Auth extends DB
 		return $data;
 	}
     
+	public function checkAuth($login, $password)
+	{	
+        $password = md5($password);
+		$query_auth_array = array(
+            'columns' => 'id',
+            'table' => 'users',
+            'nameParam' => 'login, password',
+            'valParam' => "'".$login."', '".$password."'",
+        );
 
+        $data = $this->sql_select($query_auth_array);
+
+        return isset($data) ? true : false;
+	
+	}
 }
 ?>

@@ -41,19 +41,23 @@ class Controller_Auth extends Controller
 	//регистрация
 	function action_registration()
 	{
+	$data=null;
 		if(!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['password_confirm']))
 		{
 			//авторизация
 			$Auth_model = new Auth();
 
-			$Auth_model->registration($_POST['login'], $_POST['password'], $_POST['password_confirm']);
+			$data = $Auth_model->registration($_POST['login'], $_POST['password'], $_POST['password_confirm']);
+			if($data===true){
 			$_SESSION['success'] = 'Регистрация прошла успешно';
 			Route::redirect('auth');
+			}
+			$_SESSION['error'] = $data['error'];
 			//	$this->view->generate('auth_view.php', 'template_view.php');
-			return true;
+
 			
 		}
-		$this->view->generate('registration_view.php', 'template_view.php');
+		$this->view->generate('registration_view.php', 'template_view.php', $data);
 		return true;
 	}
 
