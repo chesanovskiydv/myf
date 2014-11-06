@@ -1,13 +1,12 @@
 <?php 
 require_once 'ArrayAssistant.php';
-require_once 'Content.php';
+//require_once 'Content.php';
 /**
  * GetContent - класс для получения контента страницы.
  * для работы необходим curl
  *
- * @param array $proxyArray
- * @param array $AppSetings
- * @param array $curlOptions
+ * @var array $AppSetings
+ * @var array $curlOptions
  * 
  */
 class GetContent
@@ -37,8 +36,8 @@ class GetContent
 		if(isset($proxy))
 		curl_setopt($this->curlSession, CURLOPT_PROXY, $proxy);
 	}
-	
-	public function parseContent($url, $proxyArray=null)
+
+	public function parseContent($url, &$proxyArray=null)
 	{
 		$this->curlOptions[CURLOPT_URL]=$url;
 		//номер текущего прокси
@@ -94,7 +93,12 @@ class GetContent
 		//возвращать только страницы с HTTP указаными в конфиге
 		if(in_array($code, $this->AppSetings['returnPageHTTP']))
 		{
-			return new Content($returnContent,array_values($proxyArray));
+			//return new Content($returnContent,array_values($proxyArray));
+			if(isset($proxyArray))
+			{
+				$proxyArray=array_values($proxyArray);
+			}
+			return $returnContent;
 		}
 		else
 		{
@@ -112,21 +116,4 @@ class GetContent
 		}
 	}
 }
-/*
-
-$arrayOfProxy=ArrayAssistant::init()->FileToArray('\proxy\teeee.txt')->getArray();
-$ContentObj=GetContent::init()->parseContent('https://ru.wikipedia.org/wiki/CURL', $arrayOfProxy);
-if($ContentObj)
-{
-	//ArrayAssistant::init()->saveArrayToFile('\proxy\teeee.txt',$ContentObj->getProxy(),false);
-}
-$content=$ContentObj->getContent();
-//TODO дальше после получения контента и сохранения оставшихся прокси
-//echo $k;
-echo "<pre>";
-print_r($ContentObj->getProxy());
-echo "</pre>";
-$qq=GetContent::init()->parseContent('https://ru.wikipedia.org/wiki/CURL', $ContentObj->getProxy());
-
-*/
 ?>
