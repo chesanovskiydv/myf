@@ -73,5 +73,25 @@ class Auth extends MySQL
         return isset($data) ? true : false;
 	
 	}
+	
+	public static function whoLogin()
+	{	
+       // $password = md5($password);
+		$query_auth_array = array(
+            'columns' => 'login',
+            'table' => 'users',
+            'nameParam' => 'id',
+            'valParam' => $_SESSION['id'],
+        );
+
+        $data = MySQL::init()->sqlSelect($query_auth_array);
+        return isset($data) ? $data[0]['login'] : false;
+	
+	}
+	
+	public static function init($className=__CLASS__)
+	{
+		return parent::init($className);
+	}
 }
 ?>

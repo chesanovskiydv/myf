@@ -2,7 +2,7 @@
 //Класс для соединения с MySQL
 class MySQLConnect extends DbConnect
 {
-
+	
 	protected $db;
 
     protected function __construct($db=NULL)
@@ -17,7 +17,11 @@ class MySQLConnect extends DbConnect
 			parent::__construct(null, 'mysql', $DbConf);
 		}
 	}
-    
+	    
+	public static function init($className=__CLASS__)
+	{
+		return parent::init($className);
+	}
 }
 
 ?>

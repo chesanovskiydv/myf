@@ -2,6 +2,7 @@
 //Класс для соединения с БД
 class DbConnect {
 
+	private static $_loader;
 	protected $db;
     // Конструктор соединяется с БД
     protected function __construct($db=NULL, $dbType=null, $DbConf=null)
@@ -21,6 +22,16 @@ class DbConnect {
 			{
 				die($e->getMessage());
 			}
+		}
+	}
+	
+	public static function init($className=__CLASS__)
+	{
+		if(isset(self::$_loader[$className]))
+			return self::$_loader[$className];
+		else
+		{
+			return self::$_loader[$className]=new $className();
 		}
 	}
     

@@ -13,7 +13,7 @@
 	</ul>
 	<?php if(Auth::LogIn()){ ?> 
 	<div class="login_container">
-	<?php echo $_SESSION['login'] ?>
+	<?php echo Auth::whoLogin(); ?>
 	<span class="caret"></span>
 	<ul>
 		<li><a href="/auth/logout">Выход</a></li>

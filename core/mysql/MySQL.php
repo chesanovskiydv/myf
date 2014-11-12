@@ -117,12 +117,9 @@ class MySQL extends MySQLConnect
         //Возвращает true при удачном завершении операции и false при не удачном
     }
 	
-	public static function init($dbo=NULL)
+	public static function init($className=__CLASS__)
 	{
-		if (self::$_loader == NULL) {
-			self::$_loader = new self($dbo);
-		}
-		return self::$_loader;
+		return parent::init($className);
 	}
     
 }
