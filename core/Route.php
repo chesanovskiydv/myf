@@ -3,10 +3,6 @@ class Route
 {
     static function start()
     {
-		if(in_array($_SERVER["REMOTE_ADDR"], Config::getBannedIp()))
-		{	
-			Route::errorPage403();
-		}
         // контроллер и действие по умолчанию
         $controllerName = 'Main';
         $actionName = 'index';
@@ -24,6 +20,11 @@ class Route
 		{
 			$act = explode('?', $routes[2]); 
 			$actionName = $act[0];
+		}
+		
+		if(in_array($_SERVER["REMOTE_ADDR"], Config::getBannedIp()) && $controllerName!='403')
+		{	
+			Route::errorPage403();
 		}
 		//Если не залогинен пользватель - отправлять регатся или авторизоватся
 		if(!Auth::logIn() && $controllerName!='auth')
