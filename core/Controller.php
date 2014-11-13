@@ -5,6 +5,12 @@ class Controller extends BaseController
 //	public $access = array('create'=>'admin');
 	public $denied = array();
 	
+	function validationRules()
+	{
+		return array( 
+		);
+	}
+	
 	/**
 	 * Массив содержащий:
 	 * currentAction - текущее действие,

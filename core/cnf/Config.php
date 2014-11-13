@@ -6,8 +6,8 @@ Class Config {
             'DB_HOST' => 'localhost',
             'DB_NAME' => 'myf',
             'DB_USER' => 'root',
-           // 'DB_PASS' => 'root',
-            'DB_PASS' => '',
+            'DB_PASS' => 'root',
+           // 'DB_PASS' => '',
             'DB_CHARSET' => 'utf8',
     );
 	
