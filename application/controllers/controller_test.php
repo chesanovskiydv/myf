@@ -10,7 +10,8 @@ class Controller_Test extends Controller
 	function __construct()
 	{
 		$this->model = new Model_Test();
-		$this->view = new View();
+	//	$this->view = new View();
+		parent::__construct($this->info);
 	}
 
 	function actionIndex()

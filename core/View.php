@@ -1,7 +1,8 @@
 <?php
 class View extends Widget
 {
-	/*	$info = array(
+	/*	
+	$info = array(
 		currentController' - текущий контрооллер
 	 	currentAction' - текущее действие
 	 	)

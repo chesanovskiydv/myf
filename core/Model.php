@@ -19,28 +19,23 @@ class Model extends MySQL
 	function validationRules()
 	{
 		return array(
-			'qq'=>array('isInt'),
-			'qq1'=>array('isBool'),
-			'qq2'=>array('isEmail'),
-			'qq3'=>array('isUserName'),
-			'qq4'=>array('isPassword'),
-			'qq5'=>array('min=5'),
-			'qq6'=>array('compare=test'),
 		);
 	}
 	
 	public function validate()
 	{
+	//unset($_SESSION['error']); //TODO: Кудато перенести или убирать после отображения / Перенести в $errors = array();
 		$validate = new Validate;
 		foreach($this->validationRules() as $key=>$value)
 		{
+			if(isset($_SESSION['error'][$key]))
 			unset($_SESSION['error'][$key]); //удаляем старые ошибки
+			//unset($_SESSION['error']); //удаляем старые ошибки
 			if(isset($this->data[$key]))
 			{
 				foreach($value as $rule)
 				{
 					$ruleName = explode('=', $rule); 
-				//	if(in_array($ruleName[0],get_class_methods('Validate')))
 					if(method_exists('Validate', $ruleName[0]))
 					{
 						if(isset($ruleName[1]))
@@ -54,6 +49,7 @@ class Model extends MySQL
 						if($tmp!==true)
 						{
 							//$_SESSION['error'][имя переменной][номер ошибки]= сообщение об ошибке;
+							//echo $key;
 							$_SESSION['error'][$key][] = $tmp;
 						}
 					}

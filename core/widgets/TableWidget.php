@@ -1,5 +1,5 @@
 <?php 
-class TableWidget
+class TableWidget extends BaseWidget
 {
 	public function table($tableStyle=array(),	$tableTitles=array(), $tableData=array())
 	{

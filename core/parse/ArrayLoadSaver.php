@@ -37,16 +37,20 @@ class ArrayLoadSaver
  */
 	public function FileToArray($filename)
 	{
-		$filename = dirname(__FILE__).$filename;
+		if($filename[0]=='/')
+		{
+			$filename = substr($filename,1);
+	//		$filename = dirname(__FILE__).'/'.$filename;
+		}
 		try{
 			if(!file_exists($filename))
 			{
 				throw new Exception("This file does not exist: \"$filename\"");
 			}
 		}catch (Exception $e) {
-							echo "Error : ".$e->getMessage(), "\n";
-							exit;
-					}	
+			echo "Error : ".$e->getMessage(), "\n";
+			return false;
+		}	
 		$f=fopen($filename,"rt")  or die ( "Can't open the file $filename" );	
 		$j=0;
 		while(!feof($f))
@@ -78,28 +82,21 @@ class ArrayLoadSaver
 		{
 			$this->dataArray = $ar;
 		}
-        /*
-		if(isset($filename))
+		if($filename[0]=='/')
 		{
-			$this->filename = $filename;
+			$filename = substr($filename,1);
+	//		$filename = dirname(__FILE__).'/'.$filename;
 		}
-        */
-		$filename = dirname(__FILE__).$filename;
 		try {
 			if($this->rewrite)
 			{
-				$handle = fopen($filename, 'a') or die ( "Can't open the file $filename" );;
+				$handle = fopen($filename, 'a');
 			}
 			else
 			{
-				$handle = fopen($filename, 'w') or die ( "Can't open the file $filename" );;
+				$handle = fopen($filename, 'w');
 			}
-			 if (!$handle) throw new Exception("Could not open the file!");
-			foreach($this->dataArray as $value)
-			{
-				fwrite($handle, $value."\r\n");
-			}
-			fclose($handle);
+			 if (!$handle) throw new Exception("Can't open the file \"$filename\"");
 		}
 		catch (Exception $e) {
 			  //	echo 'Error: ',  $e->getMessage(), "\n";
@@ -107,6 +104,11 @@ class ArrayLoadSaver
 					$e->getLine()."): ".$e->getMessage(), "\n";
 			return false;
 		}
+		foreach($this->dataArray as $value)
+		{
+			fwrite($handle, $value."\r\n");
+		}
+		fclose($handle);
 		return $this;
 	}
 	

@@ -4,14 +4,7 @@ class Validate
 	
 	public static function isInt($var)
 	{
-		if(is_int($var))
-		{
-			return true;
-		}
-		else
-		{
-			return 'Должно быть int';
-		}
+		return preg_match('/^(0)$|^(\-)?([1-9][0-9]*)$/',$var) ? true : 'Должно быть int';
 	}
 	
 	
@@ -56,13 +49,13 @@ class Validate
 	//Максимальное кол-во символов	
 	public static function max($var, $lenght)
 	{
-		if(strlen($var)<$lenght)
+		if(strlen($var)<=$lenght)
 		{
 			return true;
 		}
 		else
 		{
-			return "Должно быть меньше чем $lenght символов";
+			return "Должно быть не больше $lenght символов";
 		}
 	}
 	
@@ -70,13 +63,13 @@ class Validate
 	//Минимальное кол-во символов
 	public static function min($var, $lenght)
 	{
-		if(strlen($var)>$lenght)
+		if(strlen($var)>=$lenght)
 		{
 			return true;
 		}
 		else
 		{
-			return "Должно быть больше чем $lenght символов";
+			return "Должно быть не меньше $lenght символов";
 		}
 	}
 	
@@ -95,7 +88,7 @@ class Validate
 	//email
 	public static function isEmail($var)
 	{
-		if(self::checkRegExp($var, '/^[^@]+@([^@\.]+\.)+[^@\.]+$/')===true)
+		if(preg_match('/^[^@]+@([^@\.]+\.)+[^@\.]+$/',$var))
 		{
 			return true;
 		}
@@ -108,7 +101,7 @@ class Validate
 	//Имя пользователя (с ограничением 4-15 символов, которыми могут быть буквы и цифры, первый символ обязательно буква):
 	public static function isUserName($var)
 	{
-		if(self::checkRegExp($var, '/^[a-zA-Z][a-zA-Z0-9-_\.]{3,15}$/')===true)
+		if(preg_match('/^[a-zA-Z][a-zA-Z0-9-_\.]{3,15}$/',$var))
 		{
 			return true;
 		}
@@ -121,7 +114,7 @@ class Validate
 	//Пароль (Строчные и прописные латинские буквы, цифры, 6-15 символов)
 	public static function isPassword($var)
 	{
-		if(self::checkRegExp($var, '/^[a-zA-Z0-9-_\.$%^&*#@!?><]{6,15}$/')===true)
+		if(preg_match('/^[a-zA-Z0-9-_\.$%^&*#@!?><]{6,15}$/',$var))
 		{
 			return true;
 		}
@@ -158,7 +151,7 @@ class Validate
 	}
 	
 	//проверяет, находится ли длина строкового значения атрибута в указанном интервале
-	public static function lenght($var, $min, $max) //TODO: ?? 2параметр парсить?
+	public static function lenght($var, $min, $max) //TODO: ?? 2 аргумент парсить?
 	{
 		if($min<=strlen($var) && strlen($var)<=$max)
 		{

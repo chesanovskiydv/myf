@@ -3,7 +3,7 @@
 		//CURLOPT_URL => 'https://ru.wikipedia.org/wiki/FTP-%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82',
 		CURLOPT_RETURNTRANSFER => 1,
 		CURLOPT_SSL_VERIFYPEER => false,
-	//	CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9.0.1) Gecko/2008070208',
+		CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9.0.1) Gecko/2008070208',
 		);
 		
 /*

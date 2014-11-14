@@ -22,7 +22,7 @@ class Parser
 		$proxyArray=null;
 		if(isset($proxyFile) && !empty($proxyFile))
 		{
-			$proxyArray = ArrayAssistant::init()->FileTOArray($proxyFile)->getArray();
+			$proxyArray = ArrayAssistant::init()->FileToArray($proxyFile)->getArray();
 			ArrayAssistant::init()->saveArrayToFile($proxyFile,$proxyArray,false);
 		}
 		$getContent = new GetContent;

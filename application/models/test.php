@@ -1,7 +1,13 @@
 <?php
 class Model_Test extends Model
 {
-    
+    function validationRules()
+	{
+		return array(
+			'login1'=>array('compare=test12', 'isInt'),
+		);
+	}
+	
 	public function get_sql_data()
 	{	
 		//$query='SELECT * FROM test';

@@ -20,19 +20,19 @@ else
 
 	<p>
 		<label for="login">Логин:</label>
-		<input type="text" name="login" id="login" value="<?php echo empty($_POST['login']) ? 'login1' : $_POST['login'] ?>">
+		<?php $this->input('login','text', empty($_POST['login']) ? 'login1' : $_POST['login'], array('id'=>'login')); ?>
 	</p>
 
 	<p>
 		<label for="password">Пароль:</label>
-		<input type="password" name="password" id="password" value="password1">
+		<?php $this->input('password','password','password1', array('id'=>'password')); ?>
 	</p>
 <?php
 
 	echo isset($data['error']) ? $data['error'] : (isset($data['success']) ? $data['success'] : null);
 ?>
 	<p class="login-submit">
-		<button type="submit" class="login-button">Войти</button>
+		<?php $this->submitButton('Войти', array('class'=>'login-button')); ?>
 	</p>
 
 	<!-- <p class="forgot-password"><a href="index.html">Забыл пароль?</a></p> -->

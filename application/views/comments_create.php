@@ -1,10 +1,10 @@
 <form method="post" action="" id="comment_form">
 		     
 	<div>
-	    <textarea rows="10" name="comment" id="comment" placeholder="Комментарий..."></textarea>
+		<?php $this-> textarea('comment', null, $style=array('id'=>'comment','placeholder'=>'Комментарий...', 'rows'=>10)); ?>
 	</div>
 	<div>
-		<input name="submit" value="Комментировать" type="submit">
+		<?php $this->input('submit','submit','Комментировать', array()); ?>
 	</div>
 	<?php echo isset($data['error']) ? $data['error'] : (isset($data['success']) ? $data['success'] : null); ?>
 </form>

@@ -13,12 +13,13 @@ require_once '/../core/validate/Validate.php';
 require_once '/../core/cache/Cache.php';
 require_once '/../core/localization/Localize.php';
 require_once '/../core/Auth.php';
+require_once '/../core/widgets/BaseWidget.php';
 require_once '/../core/widgets/Widget.php';
 require_once '/../core/Model.php';
 require_once '/../core/View.php';
 require_once '/../core/Controller.php';
 require_once '/../core/Route.php';
-
+//TODO: autoload?
 
 
 Route::start(); // запускаем маршрутизатор

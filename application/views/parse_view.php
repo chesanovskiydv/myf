@@ -4,6 +4,26 @@ foreach($_SESSION['error']['qq6'] as $error)
 {
 echo $error."<br>";
 }
+echo $_POST['login1']."<br>";
+foreach($_SESSION['error']['login1'] as $error)
+{
+echo $error."<br>";
+}
+$str = "22";
+
+?>
+<select><option>Выберите из списка</option>
+<option>Option</option>
+<option>Textarea</option>
+<option>Label</option>
+<option>Fieldset</option><
+<option>Legend</option></select>
+<form method="post" action="" class="login">
+		<?php $this->input('login1','text', isset($_POST['login1']) ? $_POST['login1'] : null,array('id'=>'login')); ?>
+		<?php $this->submitButton('Subbmit', array('class'=>'login-button1', 'id'=>'test')); ?>
+		<?php $this->errorLabelWidget('login1',array('for'=>'login1')); ?>
+</form>
+<?php 
 echo $_SERVER['QUERY_STRING']."<br>";
 echo $_SERVER['REMOTE_ADDR']."<br>";
 
