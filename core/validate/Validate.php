@@ -7,56 +7,27 @@ class Validate
 		return preg_match('/^(0)$|^(\-)?([1-9][0-9]*)$/',$var) ? true : 'Должно быть int';
 	}
 	
-	
 	public static function isBool($var)
 	{
-		if(is_bool($var))
-		{
-			return true;
-		}
-		else
-		{
-			return 'Должно быть bool';
-		}
+		return is_bool($var) ? true : 'Должно быть bool';
 	}
 	
 	//цифра
 	public static function isNumeric($var)
 	{
-		if(is_numeric($var))
-		{
-			return true;
-		}
-		else
-		{
-			return 'Должно быть numeric';
-		}
+		return is_numeric($var) ? true : 'Должно быть чисдо';
 	}
 	
 	//Не пустое
 	public static function notEmpty($var)
 	{
-		if(!empty($var))
-		{
-			return true;
-		}
-		else
-		{
-			return 'Должно быть не пустым';
-		}
+		return !empty($var) ? true : 'Должно быть не пустым';
 	}
 
 	//Максимальное кол-во символов	
 	public static function max($var, $lenght)
 	{
-		if(strlen($var)<=$lenght)
-		{
-			return true;
-		}
-		else
-		{
-			return "Должно быть не больше $lenght символов";
-		}
+		return (strlen($var)<=$lenght) ? true : "Должно быть не больше $lenght символов";
 	}
 	
 	

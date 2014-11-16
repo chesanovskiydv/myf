@@ -7,7 +7,7 @@ class CsvAssistant
 {
 	private static $_loader;
    /**
-	 * Функция сохранения массива в csv, элемент = строка
+	 * метод сохранения массива в csv, элемент = строка
 	 *
 	 * @param string $fileName Название файла
 	 * @param array $data Массив с данными

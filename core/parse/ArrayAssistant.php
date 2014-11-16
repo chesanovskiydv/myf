@@ -16,7 +16,7 @@ class ArrayAssistant extends ArrayLoadSaver
 	);
 
 /**
- * Функция для преобразования данных из файла в массив
+ * метод для преобразования данных из файла в массив
  *
  * @param string $filename Название файла
  * @param array $options = array(  - Массив опций
