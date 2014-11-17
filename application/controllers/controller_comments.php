@@ -48,6 +48,7 @@ class Controller_Comments extends Controller
 	//$data="";
 		if(isset($_POST['comment']))
 		{
+			$_POST['comment'] = strip_tags($_POST['comment']);
 			$this->model->setData($_POST);
 
 			$this->model->validate();

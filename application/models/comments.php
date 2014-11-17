@@ -10,6 +10,7 @@ class Model_Comments extends Model
 	
 	public function createComment($id,$comments,$emptyCom=true)
 	{
+		$comments = strip_tags($comments);
 		if(!$emptyCom)
 		{
 			if(empty($comments))
