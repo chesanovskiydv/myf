@@ -24,8 +24,6 @@ class ValidateTest extends PHPUnit_Framework_TestCase
 	public function testIsIntFailed()
 	{
 		$this->assertEquals(Validate::isInt($this->randString(rand())),'Должно быть int');
-		$this->assertEquals(Validate::isInt($this->randString(rand())),'Должно быть int');
-		$this->assertEquals(Validate::isInt($this->randString(rand())),'Должно быть int');
 	}
 	//isBool
 	public function testIsBoolSuccess_1()
@@ -40,8 +38,6 @@ class ValidateTest extends PHPUnit_Framework_TestCase
 	
 	public function testIsBoolFailed_1()
 	{
-		 $this->assertEquals(Validate::isBool($this->randString(rand())),'Должно быть bool');
-		 $this->assertEquals(Validate::isBool($this->randString(rand())),'Должно быть bool');
 		 $this->assertEquals(Validate::isBool($this->randString(rand())),'Должно быть bool');
 	}	
 	
@@ -88,8 +84,6 @@ class ValidateTest extends PHPUnit_Framework_TestCase
 	public function testIsNumericFailed_1()
 	{
 		$this->assertEquals(Validate::isNumeric($this->randString(rand())), 'Должно быть чисдо');
-		$this->assertEquals(Validate::isNumeric($this->randString(rand())), 'Должно быть чисдо');
-		$this->assertEquals(Validate::isNumeric($this->randString(rand())), 'Должно быть чисдо');
 	}
 	
 	public function testIsNumericFailed_2()
@@ -112,16 +106,12 @@ class ValidateTest extends PHPUnit_Framework_TestCase
 		$strLenght = rand();
 		$max = (string) rand($strLenght+1, getrandmax());
 		$this->assertTrue(Validate::max($this->randString($strLenght), $max));
-		$this->assertTrue(Validate::max($this->randString($strLenght), $max));
-		$this->assertTrue(Validate::max($this->randString($strLenght), $max));
 	}
 	
 	public function testMaxFailed_1()
 	{
 		$strLenght = rand();
 		$max = (string) rand(0, $strLenght-1);
-		$this->assertEquals(Validate::max($this->randString($strLenght), $max), "Должно быть не больше $max символов");
-		$this->assertEquals(Validate::max($this->randString($strLenght), $max), "Должно быть не больше $max символов");
 		$this->assertEquals(Validate::max($this->randString($strLenght), $max), "Должно быть не больше $max символов");
 	}
 	//min
@@ -130,16 +120,12 @@ class ValidateTest extends PHPUnit_Framework_TestCase
 		$strLenght = rand();
 		$min = (string) rand(0, $strLenght-1);
 		$this->assertTrue(Validate::min($this->randString($strLenght), $min));
-		$this->assertTrue(Validate::min($this->randString($strLenght), $min));
-		$this->assertTrue(Validate::min($this->randString($strLenght), $min));
 	}
 	
 	public function testMinFailed_1()
 	{
 		$strLenght = rand();
 		$min = (string) rand($strLenght+1, getrandmax());
-		$this->assertEquals(Validate::min($this->randString($strLenght), $min), "Должно быть не меньше $min символов");
-		$this->assertEquals(Validate::min($this->randString($strLenght), $min), "Должно быть не меньше $min символов");
 		$this->assertEquals(Validate::min($this->randString($strLenght), $min), "Должно быть не меньше $min символов");
 	}
 }
