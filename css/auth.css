@@ -46,11 +46,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
+/*
 body, .login-submit, .login-submit:before, .login-submit:after {
   background: #373737 url("../images/bg.png") 0 0 repeat;
 }
-
+*/
 body {
   font: 14px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #ffffff;
@@ -267,4 +267,8 @@ input[type=text]:focus, input[type=password]:focus {
 .vladmaxi-top span.right a{
 	float: left;
 	display: block;
+}
+#error
+{
+	width: 100%;
 }

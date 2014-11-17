@@ -22,10 +22,10 @@ class Widget
 		$style - массив со стилями ("стиль"=>"значение")
 	*/
 
-	function errorLabelWidget($errorVarName, $style=array())
+	function errorLabelWidget($errorVarName, $ForName, $style=array())
 	{
 		$widget = new wid\ErrorLabelWidget;
-		$widget->errorLabel($errorVarName,$style);
+		$widget->errorLabel($errorVarName, $ForName ,$style);
 	}	
 	
 	/*

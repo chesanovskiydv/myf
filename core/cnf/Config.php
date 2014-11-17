@@ -22,13 +22,17 @@ Class Config {
 	private static $bannedIp = array();
 	//js и css файлы
 	private static $scripts = array(
-		'js' => array('main.js'),
-		'css' => array('auth.css','topmenu.css', 'style.css'),
+	//	'js' => array('main.js'),
+	//	'css' => array('auth.css','topmenu.css', 'style.css'),
+		'css' => array('style.css'),
 		'packages' => array(
 			'comments' => array(
 				'js' => array(),
 				'css' =>  array('comments.css','comments_view.css'),
-		),
+			),
+			'auth' => array(
+				'css' => array('auth.css'),
+			),
 			'slider' => array(
 				'js'=> array('slides.js','myslider.js'),
 				'css' => array('slyder_styles.css'),
@@ -38,6 +42,9 @@ Class Config {
 			),
 			'bootstrap'=> array(
 				'css'=>array('bootstrap/bootstrap.css','bootstrap/bootstrap.min.css'),
+			),
+			'erasure'=> array(
+				'css'=>array('styleErasure.css'),
 			),
 		)		
 	);

@@ -1,8 +1,12 @@
-.hello{
- margin: 100px;   
+.commentCreateArea{
+	margin: 0 auto;
+	width: 400px;
 }
-.login_container{
-	min-width: 150px;
+#comment {
+	width: 400px;
+}
+.createCommentSubmit{
+	margin-left: 240px;
 }
 #captcha{
 

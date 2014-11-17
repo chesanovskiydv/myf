@@ -27,8 +27,9 @@ else
 		<label for="password">Пароль:</label>
 		<?php $this->input('password','password','password1', array('id'=>'password')); ?>
 	</p>
+	<?php $this->errorLabelWidget('login', 'login', array('id'=>'error')); ?>
+	<?php $this->errorLabelWidget('password', 'password', array('id'=>'error')); ?>
 <?php
-
 	echo isset($data['error']) ? $data['error'] : (isset($data['success']) ? $data['success'] : null);
 ?>
 	<p class="login-submit">
