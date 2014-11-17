@@ -45,19 +45,22 @@ class Controller_Comments extends Controller
 	
 	function actionCreate()
 	{
-	$data="";
+	//$data="";
 		if(isset($_POST['comment']))
 		{
+			$this->model->setData($_POST);
+
+			$this->model->validate();
 			if($this->model->createComment($_SESSION['id'],$_POST['comment'], false))
 			{
 				Route::redirect('comments');
 			}
-			else
-			{
-				$data['error'] = "Комментарий должен быть не больше 255 символов";
-			}
+		//	else
+		//	{
+		//		$data['error'] = "Комментарий должен быть не больше 255 символов";
+		//	}
 		}
-		$this->view->generate('comments_create.php', 'template_view.php', $data);
+		$this->view->generate('comments_create.php', 'template_view.php');//, $data);
 	}
 	
 }

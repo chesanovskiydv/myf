@@ -1,5 +1,6 @@
 <?php 
-class ErrorLabelWidget extends BaseWidget
+namespace App\widget;
+class ErrorLabelWidget extends \BaseWidget
 {
 	public function errorLabel($errorVarName, $style=array())//($tableStyle=array(),	$tableTitles=array(), $tableData=array())
 	{

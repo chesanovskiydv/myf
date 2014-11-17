@@ -1,5 +1,6 @@
 <?php 
-class InputWidget extends BaseWidget
+namespace App\widget;
+class InputWidget extends \BaseWidget
 {
 	public function input($name, $type='text', $value=null, $style=array())
 	{

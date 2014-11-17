@@ -1,5 +1,6 @@
 <?php 
-class LabelWidget extends BaseWidget
+namespace App\widget;
+class LabelWidget extends \BaseWidget
 {
 	public function label($inscription, $style=array())
 	{

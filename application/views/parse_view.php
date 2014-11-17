@@ -10,7 +10,6 @@ foreach($_SESSION['error']['login1'] as $error)
 echo $error."<br>";
 }
 $str = "22";
-
 ?>
 <select><option>Выберите из списка</option>
 <option>Option</option>

@@ -1,5 +1,6 @@
 <?php 
-class ButtonWidget extends BaseWidget
+namespace App\widgetBtn;
+class ButtonWidget extends \BaseWidget
 {
 	public function button($type='button', $text="", $style=array())
 	{

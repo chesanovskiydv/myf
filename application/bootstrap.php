@@ -2,9 +2,9 @@
 spl_autoload_register('my_autoloader');
 
 require_once '/../core/cnf/Config.php';
+require_once '/../core/DbConnect.php';
 require_once '/../core/mysql/MySQLConnect.php';
 require_once '/../core/mysql/MySQL.php';
-require_once '/../core/DbConnect.php';
 require_once '/../core/sqlite/SQLiteConnect.php';
 require_once '/../core/sqlite/SQLite.php';
 require_once '/../core/parse/Parser.php';
@@ -17,6 +17,7 @@ require_once '/../core/widgets/BaseWidget.php';
 require_once '/../core/widgets/Widget.php';
 require_once '/../core/Model.php';
 require_once '/../core/View.php';
+require_once '/../core/BaseController.php';
 require_once '/../core/Controller.php';
 require_once '/../core/Route.php';
 //TODO: autoload?

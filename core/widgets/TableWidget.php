@@ -1,5 +1,6 @@
-<?php 
-class TableWidget extends BaseWidget
+<?php
+namespace App\widgetTable;
+class TableWidget extends \BaseWidget
 {
 	public function table($tableStyle=array(),	$tableTitles=array(), $tableData=array())
 	{

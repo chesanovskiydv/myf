@@ -26,6 +26,7 @@ class Route
 		{	
 			Route::errorPage403();
 		}
+		Route::removeErrors();
 		//Если не залогинен пользватель - отправлять регатся или авторизоватся
 		if(!Auth::logIn() && $controllerName!='auth')
 		{
@@ -144,5 +145,10 @@ class Route
     {
         return isset($_SESSION['role']) ? $_SESSION['role'] : 'guest';
     }
+	
+	public static function removeErrors()
+	{
+		unset($_SESSION['error']);
+	}
 }
 ?>

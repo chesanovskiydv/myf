@@ -30,7 +30,7 @@ class Model extends MySQL
 		{
 			if(isset($_SESSION['error'][$key]))
 			unset($_SESSION['error'][$key]); //удаляем старые ошибки
-			//unset($_SESSION['error']); //удаляем старые ошибки
+		//	unset($_SESSION['error']); //удаляем старые ошибки
 			if(isset($this->data[$key]))
 			{
 				foreach($value as $rule)

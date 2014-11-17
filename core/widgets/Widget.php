@@ -6,12 +6,14 @@ require_once 'ButtonWidget.php';
 require_once 'LabelWidget.php';
 require_once 'TextareaWidget.php';
 //TODO:autoload
-
+use App\widget as wid;
+use App\widgetTable as widT;
+use App\widgetBtn as widB;
 class Widget 
 {
 	function tableWidget($tableStyle=array(),	$tableTitles=array(), $tableData=array())
 	{
-		$widget = new TableWidget;
+		$widget = new widT\TableWidget;
 		$widget->table($tableStyle, $tableTitles, $tableData);
 	}
 	
@@ -19,9 +21,10 @@ class Widget
 		$errorVarName - имя поля\переменной для которой показать ошибки (name)
 		$style - массив со стилями ("стиль"=>"значение")
 	*/
+
 	function errorLabelWidget($errorVarName, $style=array())
 	{
-		$widget = new ErrorLabelWidget;
+		$widget = new wid\ErrorLabelWidget;
 		$widget->errorLabel($errorVarName,$style);
 	}	
 	
@@ -32,7 +35,7 @@ class Widget
 	*/
 	function input($name, $type='text', $value=null, $style=array())
 	{
-		$widget = new InputWidget;
+		$widget = new wid\InputWidget;
 		$widget->input($name, $type, $value, $style);
 	}	
 	
@@ -43,31 +46,31 @@ class Widget
 	*/
 	function button($type='button', $text="", $style=array())
 	{
-		$widget = new ButtonWidget;
+		$widget = new widB\ButtonWidget;
 		$widget->button($type, $text, $style);
 	}
 	
 	function submitButton($text="", $style=array())
 	{
-		$widget = new ButtonWidget;
+		$widget = new widB\ButtonWidget;
 		$widget->button('submit', $text, $style);
 	}
 	
 	function resetButton($text="", $style=array())
 	{
-		$widget = new ButtonWidget;
+		$widget = new widB\ButtonWidget;
 		$widget->button('reset', $text, $style);
 	}
 	
 	function label($inscription, $style=array())
 	{
-		$widget = new LabelWidget;
+		$widget = new wid\LabelWidget;
 		$widget->label($inscription, $style);
 	}
 	
 	function  textarea($name, $value=null, $style=array())
 	{
-		$widget = new TextareaWidget;
+		$widget = new wid\TextareaWidget;
 		$widget->textarea($name, $value, $style);
 	}
 }

@@ -1,6 +1,13 @@
 <?php
 class Model_Comments extends Model
 {
+    function validationRules()
+	{
+		return array(
+			'comment'=>array('notEmpty', 'max=255'),
+		);
+	}
+	
 	public function createComment($id,$comments,$emptyCom=true)
 	{
 		if(!$emptyCom)

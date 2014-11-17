@@ -1,5 +1,6 @@
 <?php 
-class TextareaWidget extends BaseWidget
+namespace App\widget;
+class TextareaWidget extends \BaseWidget
 {
 	public function textarea($name, $value=null, $style=array())
 	{
