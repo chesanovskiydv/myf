@@ -25,6 +25,9 @@ class Model extends MySQL
 	public function validate()
 	{
 	//unset($_SESSION['error']); //TODO: Кудато перенести или убирать после отображения / Перенести в $errors = array();
+		$validate = new ValidateAssistant;
+		return $validate->validate($this->data, $this->validationRules());
+		/*
 		$validate = new Validate;
 		foreach($this->validationRules() as $key=>$value)
 		{
@@ -57,6 +60,7 @@ class Model extends MySQL
 			}
 		}
 		return isset($_SESSION['error']) ? false : true;
+		*/
 	}
 }
 ?>

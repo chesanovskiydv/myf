@@ -12,6 +12,7 @@ require_once '/../core/sqlite/SQLite.php';
 require_once '/../core/parse/Parser.php';
 require_once '/../core/parse/simple_html_dom.php';
 require_once '/../core/validate/Validate.php';
+require_once '/../core/validate/ValidateAssistant.php';
 require_once '/../core/cache/Cache.php';
 require_once '/../core/Auth.php';
 require_once '/../core/widgets/BaseWidget.php';

@@ -39,9 +39,9 @@ class Validate
 	
 	//регулярка
 	public function checkRegExp($var,$Check)
-    {
+	{
 		return (preg_match($Check,$var)) ? true : Localize::t('regExpError');
-    }
+	}
 	
 	//email
 	public static function isEmail($var)

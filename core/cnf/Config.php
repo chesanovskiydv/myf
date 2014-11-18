@@ -15,7 +15,7 @@ Class Config {
             'DB_NAME' => 'db1',
     );
 	
-	private static $local = 'en';
+	private static $local = 'ru';
 	
 	private static $CacheTime = 60;
 	
