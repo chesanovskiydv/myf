@@ -11,19 +11,31 @@ class Localize {
 		return isset($_SESSION['localize']) ? $_SESSION['localize'] : Config::getLocal();
 	}
 	
-	public static function t($var=null)
+	public static function t($var)
 	{
 		$pathTOfile = __DIR__.'/'.self::getLocal().'/translate.json';
 		if(file_exists($pathTOfile))
 		{
 			$fileContents=file_get_contents($pathTOfile);
 			$words = json_decode($fileContents, true);
-			return $words[$var];
+			if(func_num_args()>1)
+			{
+				for($arg=1;$arg<func_num_args();$arg++)
+				{
+					$words[$var] = str_replace('$var_'.$arg, func_get_arg($arg), $words[$var]);
+				}
+			}
+			return isset($words[$var]) ? $words[$var] : null;
 		}
 		else
 		{
-			echo "Файла для такой локали нет";
+			return null;
 		}
+	}
+	
+	public static function echoT($var=null)
+	{
+		echo self::t($var);
 	}
 }
 ?>

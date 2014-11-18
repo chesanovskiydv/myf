@@ -1,6 +1,4 @@
 
-<center><h1>Заголовок!</h1></center>
-
 <div id="container">
 		
 		<!-- start SlidesJS slideshow -->

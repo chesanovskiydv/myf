@@ -1,6 +1,14 @@
 {
-	"1":"lada",
-	"2":"ford",
-	"3":"bmw",
-	"qq":"lada kalina"
+	"field":"Field ",
+	"intError":"must be an int",
+	"boolError":"must be a bool",
+	"numericError":"must be a number",
+	"notEmptyError":"can not be empty",
+	"maxError":"should be no more than $var_1 characters",
+	"minError":"should be at least $var_1 characters",
+	"regExpError":"must match the regular expression",
+	"emailError":"must be in the email",
+	"userNameError":"intended for the user name, it should contain only letters and numbers (4-15)",
+	"passwordError":"intended for a password, it must contain only letters and numbers (6-15)",
+	"compareError":"must match \"$var_1\""
 } 

@@ -4,13 +4,14 @@
 				<li><a href="/auth/registration">Регистрация</a></li>
 				<li><a href="/auth">Вход</a></li>
 				<?php } ?>
+				<?php if(Auth::LogIn()){ ?>
 				<li><a href="/">Главная</a></li>
 				<li><a href="/comments">Коментарии</a></li>
-				<?php if(Auth::LogIn()){ ?>
+				
 				<li><a href="/comments/create">Оставить коментарий</a></li>
-				<?php } ?>
+				<?php //} ?>
 				<li><a href="/weather">Погода</a></li>
-				<?php if(Auth::LogIn()){ ?> 
+				<?php //if(Auth::LogIn()){ ?> 
 					<li><a  id="exit" href="/auth/logout">Выход</a></li>
 				<?php } ?>
 			</ul>
