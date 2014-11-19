@@ -22,7 +22,7 @@ class Route
 			$actionName = $act[0];
 		}
 		
-		if(in_array($_SERVER["REMOTE_ADDR"], Config::getBannedIp()) && $controllerName!='403')
+		if(in_array($_SERVER["REMOTE_ADDR"], Config::init()->getBannedIp()) && $controllerName!='403')
 		{	
 			Route::errorPage403();
 		}

@@ -19,7 +19,7 @@ Class DbCache implements iCache
 		};
 		$createTime = $CacheVar[0]['create_time'];
 		$timestamp = strtotime($createTime);
-		$liveTime = isset($CacheVar[0]['storage_time']) ? $CacheVar[0]['storage_time'] : Config::getCacheTime();
+		$liveTime = isset($CacheVar[0]['storage_time']) ? $CacheVar[0]['storage_time'] : Config::init()->getCacheTime();
 		if(time()<($timestamp+$liveTime))
 		{
 			return $CacheVar[0]['var_value'];

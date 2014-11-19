@@ -6,9 +6,9 @@ class SQLiteConnect {
     // Конструктор, соединяется с БД
     public function __construct($databases='myf', $db=NULL)
 	{
-		if(Config::getSQLiteconf())
+		if(Config::init()->getSQLiteconf())
 		{
-			$databases = Config::getSQLiteconf('DB_NAME');
+			$databases = Config::init()->getSQLiteconf('DB_NAME');
 		}
 		if(is_object($db))
 		{

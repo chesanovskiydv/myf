@@ -1,5 +1,7 @@
 <?php 
+require_once '../cnf/Config.php';
 require_once '../validate/Validate.php';
+require_once '../localization/Localize.php';
 class ValidateTest extends PHPUnit_Framework_TestCase
 {
 	//генерация случайной строки 
@@ -21,9 +23,14 @@ class ValidateTest extends PHPUnit_Framework_TestCase
 		$this->assertTrue(Validate::isInt((string) rand()));
 	}
 	
-	public function testIsIntFailed()
+	public function testIsIntFailed_1()
 	{
-		$this->assertEquals(Validate::isInt($this->randString(rand())),'Должно быть int');
+		$this->assertEquals(Validate::isInt($this->randString(rand())), Localize::t('intError'));
+	}
+	
+	public function testIsIntFailed_2()
+	{
+		$this->assertEquals(Validate::isInt('56dsf546fg'), Localize::t('intError'));
 	}
 	//isBool
 	public function testIsBoolSuccess_1()
@@ -38,27 +45,32 @@ class ValidateTest extends PHPUnit_Framework_TestCase
 	
 	public function testIsBoolFailed_1()
 	{
-		 $this->assertEquals(Validate::isBool($this->randString(rand())),'Должно быть bool');
+		 $this->assertEquals(Validate::isBool($this->randString(rand())), Localize::t('boolError'));
 	}	
 	
 	public function testIsBoolFailed_2()
 	{
-		 $this->assertEquals(Validate::isBool(rand()),'Должно быть bool');
+		 $this->assertEquals(Validate::isBool(rand()), Localize::t('boolError'));
 	}
 
 	public function testIsBoolFailed_3()
 	{
-		 $this->assertEquals(Validate::isBool((string) rand()),'Должно быть bool');
+		 $this->assertEquals(Validate::isBool((string) rand()), Localize::t('boolError'));
 	}	
 	
 	public function testIsBoolFailed_4()
 	{
-		 $this->assertEquals(Validate::isBool(1),'Должно быть bool');
+		 $this->assertEquals(Validate::isBool(1), Localize::t('boolError'));
 	}	
 	
 	public function testIsBoolFailed_5()
 	{
-		 $this->assertEquals(Validate::isBool('1'),'Должно быть bool');
+		 $this->assertEquals(Validate::isBool('1'), Localize::t('boolError'));
+	}
+	
+	public function testIsBoolFailed_6()
+	{
+		 $this->assertEquals(Validate::isBool('1true'), Localize::t('boolError'));
 	}
 	//isNumeric
 	public function testIsNumericSuccess_1()
@@ -83,12 +95,12 @@ class ValidateTest extends PHPUnit_Framework_TestCase
 	
 	public function testIsNumericFailed_1()
 	{
-		$this->assertEquals(Validate::isNumeric($this->randString(rand())), 'Должно быть чисдо');
+		$this->assertEquals(Validate::isNumeric($this->randString(rand())), Localize::t('numericError'));
 	}
 	
 	public function testIsNumericFailed_2()
 	{
-		$this->assertEquals(Validate::isNumeric(true), 'Должно быть чисдо');
+		$this->assertEquals(Validate::isNumeric(true), Localize::t('numericError'));
 	}
 	//notEmpty
 	public function testNotEmptySuccess_1()
@@ -98,7 +110,7 @@ class ValidateTest extends PHPUnit_Framework_TestCase
 	
 	public function testNotEmptyFailed_1()
 	{
-		$this->assertEquals(Validate::notEmpty(""), 'Должно быть не пустым');
+		$this->assertEquals(Validate::notEmpty(""), Localize::t('notEmptyError'));
 	}
 	//max
 	public function testMaxSuccess_1()
@@ -112,7 +124,7 @@ class ValidateTest extends PHPUnit_Framework_TestCase
 	{
 		$strLenght = rand();
 		$max = (string) rand(0, $strLenght-1);
-		$this->assertEquals(Validate::max($this->randString($strLenght), $max), "Должно быть не больше $max символов");
+		$this->assertEquals(Validate::max($this->randString($strLenght), $max), Localize::t('maxError', $max));
 	}
 	//min
 	public function testMinSuccess_1()
@@ -126,7 +138,7 @@ class ValidateTest extends PHPUnit_Framework_TestCase
 	{
 		$strLenght = rand();
 		$min = (string) rand($strLenght+1, getrandmax());
-		$this->assertEquals(Validate::min($this->randString($strLenght), $min), "Должно быть не меньше $min символов");
+		$this->assertEquals(Validate::min($this->randString($strLenght), $min), Localize::t('minError', $min));
 	}
 }
 ?>

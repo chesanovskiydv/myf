@@ -13,7 +13,7 @@ class MySQLConnect extends DbConnect
 		}
 		else
 		{
-			$DbConf=Config::getMySQLConf();
+			$DbConf=Config::init()->getMySQLConf();
 			parent::__construct(null, 'mysql', $DbConf);
 		}
 	}

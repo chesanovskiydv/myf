@@ -8,7 +8,7 @@ class Localize {
 	
 	public static function getLocal()
 	{
-		return isset($_SESSION['localize']) ? $_SESSION['localize'] : Config::getLocal();
+		return isset($_SESSION['localize']) ? $_SESSION['localize'] : Config::init()->getLocal();
 	}
 	
 	public static function t($var)

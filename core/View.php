@@ -32,7 +32,7 @@ class View extends Widget
 	//Функция для подключения js скриптов
 	function jsScripts($packageName=null)
 	{
-		foreach(Config::getRegisterJsScripts($packageName) as $val)
+		foreach(Config::init()->getRegisterJsScripts($packageName) as $val)
 		{
 			echo '<script type="text/javascript" src="../../js/'.$val.'"></script>'."\n";
 		}
@@ -42,7 +42,7 @@ class View extends Widget
 	//Функция для подключения css скриптов
 	function cssScripts($packageName=null)
 	{
-		foreach(Config::getRegisterCssScripts($packageName) as $val)
+		foreach(Config::init()->getRegisterCssScripts($packageName) as $val)
 		{
 			echo '<link rel="stylesheet" type="text/css" href="../../css/'.$val.'" />'."\n";
 		}
