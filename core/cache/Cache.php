@@ -1,78 +1,27 @@
 <?php 
-Class Cache
+class Cache
 {
-	public static function getCache($var)
+	private $_cache;
+   
+   public function __construct(iCache $cache)
 	{
-		$CacheVar=MySQL::init()->sqlSelect(array(
-            'columns' => "*", 
-            'table' => 'cache',  
-	 		'nameParam' => 'var_name',
-            'valParam' => $var,
-	 		'sign' => "=",
-			)
-		);
-		if(!isset($CacheVar[0]))
-		{
-			return null;
-		};
-		$createTime = $CacheVar[0]['create_time'];
-		$timestamp = strtotime($createTime);
-		$liveTime = isset($CacheVar[0]['storage_time']) ? $CacheVar[0]['storage_time'] : Config::getCacheTime();
-		if(time()<($timestamp+$liveTime))
-		{
-			return $CacheVar[0]['var_value'];
-		}
-		else
-		{
-			MySQL::init()->sqlDelete(array(
-					'table' => 'cache', 
-					'whereParam' => 'id', 
-					'whereVal' => $CacheVar[0]['id'], 
-				)
-			);
-			return null;
-		};
-		return true;
+		$this->_cache = $cache;
 	}
-	
-	public static function setCache($var_name, $var_value, $liveTime=null)
+
+	public function getCache($var)
 	{
-	$tmp =MySQL::init()->sqlSelect(array(
-            'columns' => "*",
-            'table' => 'cache', 
-	 		'nameParam' => 'var_name',
-            'valParam' => $var_name,
-	 		'sign' => "=",
-        )
-	);
-	if(isset($tmp))
+		return $this->_cache->getCache($var);
+	}
+
+	public function setCache($var_name, $var_value, $liveTime=null)
 	{
-		MySQL::init()->sqlDelete(array(
-					'table' => 'cache', 
-					'whereParam' => 'id',
-					'whereVal' => $tmp[0]['id'], 
-				)
-		);
+		$this->_cache->setCache($var_name, $var_value, $liveTime);
 	}
-		if(isset($liveTime))
-		{
-			MySQL::init()->sqlInsert(array(
-				'table' => 'cache', 
-				'columns' => "var_name,var_value,storage_time", 
-				'values' => "'$var_name', '$var_value', '$liveTime'", 
-				)
-			);
-		}
-		else
-		{
-			MySQL::init()->sqlInsert(array(
-					'table' => 'cache', 
-					'columns' => "var_name,var_value", 
-					'values' => array($var_name, $var_value), 
-				)
-			);
-		}
-		return false;
+/*
+	public function delete($valueID)
+	{
+		$this->_cache->delete($valueID);
 	}
+*/
 }
 ?>

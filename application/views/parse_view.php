@@ -1,15 +1,24 @@
 <?php
 //print_r(get_class_methods('Validate'));
-foreach($_SESSION['error']['qq6'] as $error)
-{
-echo $error."<br>";
-}
-echo $_POST['login1']."<br>";
-foreach($_SESSION['error']['login1'] as $error)
-{
-echo $error."<br>";
-}
-$str = "22";
+echo "qq";
+//$cache = new Cache(new DbCache);
+$cache = new Cache(new MemcacheSupport);
+//$cache->setCache('var3','testvar1', 30);
+echo "\n";
+echo $cache->getCache('var3');
+echo "\n";
+/*
+$DbCache = new DbCache;
+$DbCache->setCache('var1','testvar1', 30);
+echo "\n";
+echo $DbCache->getCache('var1');
+echo "\n";
+*/
+/*DbCache::setCache('var1','testvar2', '100');
+echo "\n";
+echo DbCache::getCache('var1');
+echo "\n";
+*/
 ?>
 <select><option>Выберите из списка</option>
 <option>Option</option>

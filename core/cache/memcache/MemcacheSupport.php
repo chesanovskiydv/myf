@@ -1,6 +1,6 @@
 <?php 
-include 'MemcacheConnect.php';
-class  MemcacheSupport extends MemcacheConnect {
+class  MemcacheSupport extends MemcacheConnect implements iCache
+{
 
 	public function __construct($memcache_obj=NULL)
 	{
@@ -17,11 +17,17 @@ class  MemcacheSupport extends MemcacheConnect {
 		return $this->getMemcacheObj()->get($var);
 	}
 	
+	public function setCache($var, $var_value, $liveTime=null)
+	{
+		return $this->getMemcacheObj()->set($var, $var_value, false, isset($liveTime) ? $liveTime : Config::getCacheTime());
+	}
+	
 	public static function init($className=__CLASS__)
 	{
 		return parent::init($className);
 	}
 }
+/*
 //$a = new MemcacheSupport;
 $a=MemcacheSupport::init();
 $var_key = $a->getCache('our_var');
@@ -42,4 +48,5 @@ $var_key = $a->getCache('our_var');
         //Выведем закэшированные данные
         echo $a->getCache('our_var');
     }
+	*/
 ?>
