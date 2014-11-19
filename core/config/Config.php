@@ -73,6 +73,11 @@ Class Config {
         }
 	}
 	
+	public function getComponents()
+	{
+		return $this->settings['components'];
+	}
+	
 	public static function init($className=__CLASS__)
 	{
 		if(isset(self::$_loader[$className]))

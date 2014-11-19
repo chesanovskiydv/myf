@@ -42,7 +42,10 @@ return array(
 		)		
 	),
 	'components' => array(
-		'parser' => ''
+		'parser' => array(
+			'parser' => 'parse/Parser.php',
+			'simple_html_dom' => 'parse/simple_html_dom.php',
+		),
 	),
 );
 ?>

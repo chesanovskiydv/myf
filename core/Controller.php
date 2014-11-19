@@ -59,6 +59,5 @@ class Controller extends BaseController
 
 		return isset($this->denied[$action]) ? $this->denied[$action] : null;
 	}
-
 }
 ?>

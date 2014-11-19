@@ -2,7 +2,11 @@
 //print_r(get_class_methods('Validate'));
 echo "qq";
 //$cache = new Cache(new DbCache);
-$cache = new Cache(new MemcacheSupport);
+//Registry::set('cache', new Cache(new DbCache));
+
+$cache = Registry::get('cache');
+
+//$cache = new Cache(new MemcacheSupport);
 //$cache->setCache('var3','testvar1', 30);
 echo "\n";
 echo $cache->getCache('var3');
