@@ -9,7 +9,7 @@ class Registry
 	{
 		try{
 			if (isset(self::$_vars[$key]) == true) {
-				throw new Exception('Данная переменная [' . $key . '] уже существует!');
+				throw new Exception( Localize::t('exeptionRegistry_1') . $key . Localize::t('exeptionRegistry_2'));
 			}
 		} catch (Exception $e) {
 			echo "Error : ".$e->getMessage(), "\n";

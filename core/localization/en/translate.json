@@ -10,5 +10,7 @@
 	"emailError":"must be in the email",
 	"userNameError":"intended for the user name, it should contain only letters and numbers (4-15)",
 	"passwordError":"intended for a password, it must contain only letters and numbers (6-15)",
-	"compareError":"must match \"$var_1\""
+	"compareError":"must match \"$var_1\"",
+	"exeptionRegistry_1":"This variable [",
+	"exeptionRegistry_2":"] already exists!"
 } 
