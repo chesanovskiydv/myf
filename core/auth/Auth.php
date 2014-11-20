@@ -48,14 +48,17 @@ class Auth extends MySQL
 			}
 			else
 			{
-				$data['error'] = 'Такой логин уже существует';
+				ErrorRegistry::set('registration', Localize::t('registration_1'));
+				return false;
+			//	$data['error'] = 'Такой логин уже существует';
 			}
 		}
 		else
 		{
-			$data['error'] = 'Пароль и подтверждение пароля не совпадают!';
+			ErrorRegistry::set('registration', Localize::t('registration_2'));
+			return false;
+			//$data['error'] = 'Пароль и подтверждение пароля не совпадают!';
 		}
-		return $data;
 	}
     
 	public function checkAuth($login)

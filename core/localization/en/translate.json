@@ -12,5 +12,8 @@
 	"passwordError":"intended for a password, it must contain only letters and numbers (6-15)",
 	"compareError":"must match \"$var_1\"",
 	"exeptionRegistry_1":"This variable [",
-	"exeptionRegistry_2":"] already exists!"
+	"exeptionRegistry_2":"] already exists!",
+	"registration_1":"This login is already exists",
+	"registration_2":"Password and confirm password do not match!",
+	"captchaError":"Not correctly entered CAPTCHA"
 } 

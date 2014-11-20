@@ -34,7 +34,6 @@ class DbConnect {
 			return self::$_loader[$className]=new $className();
 		}
 	}
-    
 }
 
 ?>

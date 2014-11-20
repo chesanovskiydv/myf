@@ -27,7 +27,8 @@
 	<?php $this->errorLabelWidget('password', 'password',array('id'=>'error', 'class'=>'control-label')); ?>
 	<?php $this->errorLabelWidget('password_confirm', 'password_confirm',array('id'=>'error', 'class'=>'control-label')); ?>
 	<?php $this->errorLabelWidget('captcha', 'captcha',array('id'=>'error', 'class'=>'control-label')); ?>
-<?php echo isset($data['error']) ? $data['error'] : (isset($data['success']) ? $data['success'] : null); ?>
+	<?php $this->errorLabelWidget('registration', null,array('id'=>'error', 'class'=>'control-label')); ?>
+<?php //echo isset($data['error']) ? $data['error'] : (isset($data['success']) ? $data['success'] : null); ?>
 	<!-- <p class="forgot-password"><a href="index.html">Забыл пароль?</a></p> -->
 </form>
 

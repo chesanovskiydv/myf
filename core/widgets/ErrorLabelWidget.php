@@ -10,7 +10,7 @@ class ErrorLabelWidget extends \BaseWidget
 			foreach(\ErrorRegistry::get($errorVarName) as $error)
 			{
 				?>
-				<label <?=$this->getStyleString($style); ?> for="<?=$ForName ?>"><?php \Localize::echoT('field'); ?> <?=$ForName ?> <?=$error ?></label>
+				<label <?=$this->getStyleString($style); if(isset($ForName)) { ?> for="<?=$ForName ?>"<?php } ?>><?php if(isset($ForName)) {  \Localize::echoT('field'); } ?> <?=$ForName ?> <?=$error ?></label>
 				<?php
 			}
 			?> </div> <?php

@@ -76,7 +76,8 @@ class Controller_Auth extends Controller
 				}
 				else
 				{
-					$data['error']="Не правильно введена капча";
+					ErrorRegistry::set('captcha', Localize::t('captchaError'));
+				//	$data['error']="Не правильно введена капча";
 				}
 			}
 			

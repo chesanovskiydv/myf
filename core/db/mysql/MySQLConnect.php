@@ -1,6 +1,6 @@
 <?php
 //Класс для соединения с MySQL
-class MySQLConnect extends DbConnect
+abstract class MySQLConnect extends DbConnect
 {
 	
     protected function __construct($db=NULL)
@@ -20,6 +20,9 @@ class MySQLConnect extends DbConnect
 	{
 		return parent::init($className);
 	}
+	
+	abstract public function sqlSelect($array);
+	abstract public function sqlInsert($array);
+	abstract public function sqlUpdate($array);
+	abstract public function sqlDelete($array);
 }
-
-?>
