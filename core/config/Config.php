@@ -78,6 +78,11 @@ Class Config {
 		return $this->settings['components'];
 	}
 	
+	public function getRegistry()
+	{
+		return $this->settings['registry'];
+	}
+	
 	public static function init($className=__CLASS__)
 	{
 		if(isset(self::$_loader[$className]))

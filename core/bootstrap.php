@@ -10,12 +10,13 @@ require_once '/core/db/mysql/MySQL.php';
 require_once '/core/db/sqlite/SQLiteConnect.php';
 require_once '/core/db/sqlite/SQLite.php';
 require_once '/core/validate/Validate.php';
+require_once '/core/validate/ErrorRegistry.php';
 require_once '/core/validate/ValidateAssistant.php';
 require_once '/core/cache/iCache.php';
-require_once '/core/Registry.php';
+require_once '/core/registry/Registry.php';
 require_once '/core/cache/dbcache/DbCache.php';
 require_once '/core/cache/memcache/MemcacheConnect.php';
-require_once '/core/cache/memcache/MemcacheSupport.php';
+require_once '/core/cache/memcache/Memcache.php';
 require_once '/core/cache/Cache.php';
 require_once '/core/auth/Auth.php';
 require_once '/core/widgets/BaseWidget.php';
@@ -27,7 +28,8 @@ require_once '/core/Controller.php';
 require_once '/core/Route.php';
 //TODO: autoload?
 
-require_once '/../application/config/registry.php';
+require_once '/core/registry/RegistrySupport.php';
+RegistrySupport::registryFromConfig();
 $components = Config::init()->getComponents();
 foreach($components as $component)
 {

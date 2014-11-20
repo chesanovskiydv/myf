@@ -1,5 +1,6 @@
 <?php 
-class  MemcacheSupport extends MemcacheConnect implements iCache
+namespace Myf;
+class  Memcache extends \MemcacheConnect implements \iCache
 {
 
 	public function __construct($memcache_obj=NULL)

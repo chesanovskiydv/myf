@@ -7,9 +7,8 @@ class ValidateAssistant
 		$validate = new Validate;
 		foreach($validationRules as $key=>$value)
 		{
-			if(isset($_SESSION['error'][$key]))
-			unset($_SESSION['error'][$key]); //удаляем старые ошибки
-		//	unset($_SESSION['error']); //удаляем старые ошибки
+		//	if(isset($_SESSION['error'][$key]))
+		//	unset($_SESSION['error'][$key]); //удаляем старые ошибки
 			if(isset($data[$key]))
 			{
 				foreach($value as $rule)
@@ -27,15 +26,18 @@ class ValidateAssistant
 						}
 						if($tmp!==true)
 						{
-							//$_SESSION['error'][имя переменной][номер ошибки]= сообщение об ошибке;
-							//echo $key;
-							$_SESSION['error'][$key][] = $tmp;
+							ErrorRegistry::set($key, $tmp);
+							//$_SESSION['error'][имя переменной][номер ошибки]= сообщение об ошибке;	
+							//	$_SESSION['error'][$key][] = $tmp;
 						}
 					}
 				}
 			}
 		}
-		return isset($_SESSION['error']) ? false : true;
+	//	return isset($_SESSION['error']) ? false : true;
+//	print_r(ErrorRegistry::get());
+//	exit;
+		return (ErrorRegistry::get()!==null) ? false : true;
 	}
 }
 ?>

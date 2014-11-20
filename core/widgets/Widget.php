@@ -25,7 +25,7 @@ class Widget
 	function errorLabelWidget($errorVarName, $ForName, $style=array())
 	{
 		$widget = new wid\ErrorLabelWidget;
-		$widget->errorLabel($errorVarName, $ForName ,$style);
+		empty($style) ? $widget->errorLabel($errorVarName, $ForName) : $widget->errorLabel($errorVarName, $ForName ,$style);
 	}	
 	
 	/*
@@ -47,7 +47,7 @@ class Widget
 	function button($type='button', $text="", $style=array())
 	{
 		$widget = new widB\ButtonWidget;
-		$widget->button($type, $text, $style);
+		empty($style) ? $widget->button($type, $text) : $widget->button($type, $text, $style);
 	}
 	
 	function submitButton($text="", $style=array())

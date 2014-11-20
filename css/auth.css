@@ -271,4 +271,5 @@ input[type=text]:focus, input[type=password]:focus {
 #error
 {
 	width: 100%;
+	text-align: left;
 }

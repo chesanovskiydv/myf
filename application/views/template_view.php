@@ -6,6 +6,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>MyF</title>
 <link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css" />
+<?php $this->cssScripts('bootstrap'); ?>
 <?php $this->jsScripts('jquery'); ?>
 <?php $this->cssScripts('erasure'); ?>
 <?php if($this->info['currentController']=='Main') $this->cssScripts('slider'); ?>

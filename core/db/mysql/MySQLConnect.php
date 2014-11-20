@@ -3,8 +3,6 @@
 class MySQLConnect extends DbConnect
 {
 	
-	protected $db;
-
     protected function __construct($db=NULL)
 	{
 		if(is_object($db))

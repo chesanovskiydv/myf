@@ -22,6 +22,7 @@ class Controller_Test extends Controller
 	
 	function actionParse()
 	{	
+	/*
 		$_POST['qq']=1;
 		$_POST['qq1']=true;
 		$_POST['qq2']='1212as@mail.ru';
@@ -29,11 +30,15 @@ class Controller_Test extends Controller
 		$_POST['qq4']='sdf45';
 		$_POST['qq5']='sdf';
 		$_POST['qq6']='test1';
+		*/
 	//	$k = Validate::Max('asa_<');
 	//	print_r($k);
+	if(!empty($_POST))
+	{
 		$this->model->setData($_POST);
 
 		$this->model->validate();
+		}
 		$this->view->generate('parse_view.php', 'template_view.php');
 	}
 

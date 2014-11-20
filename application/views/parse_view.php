@@ -3,13 +3,13 @@
 echo "qq";
 //$cache = new Cache(new DbCache);
 //Registry::set('cache', new Cache(new DbCache));
-
+//print_r($_POST);
 $cache = Registry::get('cache');
 
 //$cache = new Cache(new MemcacheSupport);
-//$cache->setCache('var3','testvar1', 30);
+$cache->setCache('var7','testvar7', 30);
 echo "\n";
-echo $cache->getCache('var3');
+echo $cache->getCache('var7');
 echo "\n";
 /*
 $DbCache = new DbCache;
@@ -31,11 +31,15 @@ echo "\n";
 <option>Fieldset</option><
 <option>Legend</option></select>
 <form method="post" action="" class="login">
+
 		<?php $this->input('login1','text', isset($_POST['login1']) ? $_POST['login1'] : null,array('id'=>'login')); ?>
-		<?php $this->submitButton('Subbmit', array('class'=>'login-button1', 'id'=>'test')); ?>
-		<?php $this->errorLabelWidget('login1',array('for'=>'login1')); ?>
+		<?php $this->submitButton('Subbmit', array('class'=>'btn login-button1', 'id'=>'test')); ?>
+		<div class="control-group error">
+			<?php $this->errorLabelWidget('login1', 'login', array('id'=>'error','class'=>'control-label')); ?>
+		</div>
 </form>
 <?php 
+$this->button('button','test');  
 echo $_SERVER['QUERY_STRING']."<br>";
 echo $_SERVER['REMOTE_ADDR']."<br>";
 

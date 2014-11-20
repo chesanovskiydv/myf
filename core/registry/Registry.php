@@ -8,7 +8,8 @@ class Registry
 	public static function set($key, $var)
 	{
 		try{
-			if (isset(self::$_vars[$key]) == true) {
+			if (isset(self::$_vars[$key])) 
+			{
 				throw new Exception( Localize::t('exeptionRegistry_1') . $key . Localize::t('exeptionRegistry_2'));
 			}
 		} catch (Exception $e) {
@@ -23,13 +24,15 @@ class Registry
 
 	public static function get($key)
 	{
-		if (isset(self::$_vars[$key]) == false) { return null; }
+		if (!isset(self::$_vars[$key])) 
+		{ 
+			return null; 
+		}
 		return self::$_vars[$key];
 	}
 
-	public static function remove($var)
+	public static function remove($key)
 	{
 		unset(self::$_vars[$key]);
 	}
 }
-?>

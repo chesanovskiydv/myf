@@ -47,5 +47,9 @@ return array(
 			'simple_html_dom' => 'parse/simple_html_dom.php',
 		),
 	),
+	'registry' => array(
+		'cache' => 'memcache',
+	//	'cache' => 'dbCache',
+	),
 );
 ?>

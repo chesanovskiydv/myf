@@ -2,7 +2,7 @@
 		     
 	<div class="commentCreateArea">
 		<?php $this-> textarea('comment', isset($_POST['comment']) ? $_POST['comment'] : null, $style=array('id'=>'comment','placeholder'=>'Комментарий...', 'rows'=>10)); ?>
-		<?php $this->errorLabelWidget('comment', 'comment', array('id'=>'error')); ?>
+		<?php $this->errorLabelWidget('comment', 'comment'); ?>
 		<?php $this->input('submit','submit','Комментировать', array('class'=>'createCommentSubmit')); ?>
 	</div>
 	

@@ -2,7 +2,6 @@
 //Класс для соединения с БД
 class SQLiteConnect {
 
-	protected $db;
     // Конструктор, соединяется с БД
     public function __construct($databases='myf', $db=NULL)
 	{
