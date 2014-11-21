@@ -11,10 +11,16 @@ use App\widgetTable as widT;
 use App\widgetBtn as widB;
 class Widget 
 {
-	function tableWidget($tableStyle=array(),	$tableTitles=array(), $tableData=array())
+	function tableWidget($tableStyle=array(),	$tableTitles=array(), $tableData=array(), $tableDataTerms=array())
 	{
 		$widget = new widT\TableWidget;
-		$widget->table($tableStyle, $tableTitles, $tableData);
+		$widget->table($tableStyle, $tableTitles, $tableData, $tableDataTerms);
+	}
+	
+	function bootstrapTableWidget($tableStyle=array(),	$tableTitles=array(), $tableData=array(), $tableDataTerms=array())
+	{
+		$widget = new widT\TableWidget;
+		$widget->bootstrapTable($tableStyle, $tableTitles, $tableData, $tableDataTerms);
 	}
 	
 	/*
@@ -22,11 +28,29 @@ class Widget
 		$style - массив со стилями ("стиль"=>"значение")
 	*/
 
-	function errorLabelWidget($errorVarName, $ForName, $style=array())
+	function errorLabel($errorVarName, $ForName, $style=array())
 	{
 		$widget = new wid\ErrorLabelWidget;
 		empty($style) ? $widget->errorLabel($errorVarName, $ForName) : $widget->errorLabel($errorVarName, $ForName ,$style);
 	}	
+	
+	function bootstrapErrorLabel($errorVarName, $ForName, $style=array())
+	{
+		$widget = new wid\ErrorLabelWidget;
+		empty($style) ? $widget->bootstrapErrorLabel($errorVarName, $ForName) : $widget->bootstrapErrorLabel($errorVarName, $ForName ,$style);
+	}
+	
+	function groupErrorLabel($arrayOfErrors)
+	{
+		$widget = new wid\ErrorLabelWidget;
+		$widget->groupErrorLabel($arrayOfErrors);
+	}
+	
+	function bootstrapGroupErrorLabel($arrayOfErrors)
+	{
+		$widget = new wid\ErrorLabelWidget;
+		$widget->bootstrapGroupErrorLabel($arrayOfErrors);
+	}
 	
 	/*
 		$name - имя поля
@@ -37,6 +61,12 @@ class Widget
 	{
 		$widget = new wid\InputWidget;
 		$widget->input($name, $type, $value, $style);
+	}	
+	
+	function bootstrapInput($name, $type='text', $value=null, $style=array())
+	{
+		$widget = new wid\InputWidget;
+		$widget->bootstrapInput($name, $type, $value, $style);
 	}	
 	
 	/*
@@ -50,10 +80,23 @@ class Widget
 		empty($style) ? $widget->button($type, $text) : $widget->button($type, $text, $style);
 	}
 	
+	function bootstrapButton($type='button', $text="", $style=array())
+	{
+		$widget = new widB\ButtonWidget;
+		//empty($style) ? $widget->bootstrapButton($type, $text) : $widget->button($type, $text, $style);
+		$widget->bootstrapButton($type, $text, $style);
+	}
+	
 	function submitButton($text="", $style=array())
 	{
 		$widget = new widB\ButtonWidget;
 		$widget->button('submit', $text, $style);
+	}
+	
+	function bootstrapSubmitButton($text="", $style=array())
+	{
+		$widget = new widB\ButtonWidget;
+		$widget->bootstrapButton('submit', $text, $style);
 	}
 	
 	function resetButton($text="", $style=array())
@@ -62,10 +105,22 @@ class Widget
 		$widget->button('reset', $text, $style);
 	}
 	
-	function label($inscription, $style=array())
+	function bootstrapResetButton($text="", $style=array())
+	{
+		$widget = new widB\ButtonWidget;
+		$widget->bootstrapButton('reset', $text, $style);
+	}
+	
+	function label($text, $style=array())
 	{
 		$widget = new wid\LabelWidget;
-		$widget->label($inscription, $style);
+		$widget->label($text, $style);
+	}
+	
+	function bootstrapLabel($text, $style=array())
+	{
+		$widget = new wid\LabelWidget;
+		$widget->bootstrapLabel($text, $style);
 	}
 	
 	function  textarea($name, $value=null, $style=array())

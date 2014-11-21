@@ -27,11 +27,26 @@ else
 		<label for="password">Пароль:</label>
 		<?php $this->input('password','password','password1', array('id'=>'password')); ?>
 	</p>
-	<?php $this->errorLabelWidget('login', 'login', array('id'=>'error', 'class'=>'control-label')); ?>
-	<?php $this->errorLabelWidget('password', 'password', array('id'=>'error', 'class'=>'control-label')); ?>
-<?php
-	echo isset($data['error']) ? $data['error'] : (isset($data['success']) ? $data['success'] : null);
-?>
+	<?php //$this->bootstrapErrorLabel('login', 'login', array('id'=>'error')); ?>
+	<?php //$this->bootstrapErrorLabel('password', 'password', array('id'=>'error')); ?>
+	<?php //$this->bootstrapErrorLabel('auth', null, array('id'=>'error')); ?>
+	<?php $this->bootstrapGroupErrorLabel(array(
+		0 => array(
+				'errorVarName' => 'login',
+				'forName' => 'login',
+				'style' => array('id'=>'error')
+			),
+		1 => array(
+			'errorVarName' => 'password',
+			'forName' => 'password',
+			'style' => array('id'=>'error')
+		),
+		2 => array(
+				'errorVarName' => 'auth',
+				'forName' => null,
+				'style' => array('id'=>'error')
+			),
+		)); ?>
 	<p class="login-submit">
 		<?php $this->submitButton('Войти', array('class'=>'login-button')); ?>
 	</p>

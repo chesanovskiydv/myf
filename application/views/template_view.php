@@ -13,7 +13,7 @@
 <?php if($this->info['currentController']=='Main') $this->jsScripts('slider'); ?>
 <?php //if($this->info['currentController']=='auth') $this->cssScripts('auth'); ?>
 <?php if($this->info['currentController']=='comments' or 'weather') $this->cssScripts('comments'); ?>
-<?php  $this->cssScripts('auth'); ?>
+<?php // $this->cssScripts('auth'); ?>
 <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
 <?php $this->cssScripts(); ?>
 <?php //$this->jsScripts(); ?>

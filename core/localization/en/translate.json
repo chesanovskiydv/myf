@@ -15,5 +15,6 @@
 	"exeptionRegistry_2":"] already exists!",
 	"registration_1":"This login is already exists",
 	"registration_2":"Password and confirm password do not match!",
-	"captchaError":"Not correctly entered CAPTCHA"
+	"captchaError":"Not correctly entered CAPTCHA",
+	"auth":"Wrong login or password"
 } 

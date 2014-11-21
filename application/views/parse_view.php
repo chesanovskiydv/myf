@@ -23,7 +23,42 @@ echo "\n";
 echo DbCache::getCache('var1');
 echo "\n";
 */
+$this->bootstrapLabel('test', array('class'=>'label1'));
+$this->label('test', array('class'=>'label1'));
+$this->button('button','testbutton', array('id'=>'testId', 'class'=>'class1'));
+$this->bootstrapButton('button','testbutton2', array('id'=>'testId', 'class'=>'class2'));
+$this->input('test1','text', null,array('id'=>'test', 'class'=>'erwe'));
+$this->bootstrapInput('test1','text', null);
+
 ?>
+    <table class="table table-bordered">
+    <caption>Описание</caption>
+    <thead>
+    <tr>
+    <th>тх1</th>
+    <th>тх2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>тд1</td>
+    <td>тд2</td>
+    </tr>
+	 <tr>
+    <td>тд1</td>
+    <td>тд2</td>
+    </tr>
+	 <tr>
+    <td>тд1</td>
+    <td>тд2</td>
+    </tr>
+	 <tr>
+    <td>тд1</td>
+    <td>тд2</td>
+    </tr>
+    </tbody>
+    </table>
+	
 <select><option>Выберите из списка</option>
 <option>Option</option>
 <option>Textarea</option>
@@ -34,9 +69,7 @@ echo "\n";
 
 		<?php $this->input('login1','text', isset($_POST['login1']) ? $_POST['login1'] : null,array('id'=>'login')); ?>
 		<?php $this->submitButton('Subbmit', array('class'=>'btn login-button1', 'id'=>'test')); ?>
-		<div class="control-group error">
-			<?php $this->errorLabelWidget('login1', 'login', array('id'=>'error','class'=>'control-label')); ?>
-		</div>
+			<?php $this->bootstrapGroupErrorLabel('login1', 'login', array('id'=>'error')); ?>
 </form>
 <?php 
 $this->button('button','test');  

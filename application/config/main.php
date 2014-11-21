@@ -34,7 +34,10 @@ return array(
 				'js'=> array('jquery/jquery-2.1.1.min.js'),
 			),
 			'bootstrap'=> array(
-				'css'=>array('bootstrap/bootstrap.css','bootstrap/bootstrap.min.css'),
+				'css'=>array('bootstrap/bootstrap.css'),
+			),
+			'bootstrapMin'=>array(
+				'css'=>array('bootstrap/bootstrap.min.css'),
 			),
 			'erasure'=> array(
 				'css'=>array('styleErasure.css'),

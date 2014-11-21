@@ -1,6 +1,6 @@
 <?php
 //Класс для соединения с БД
-class DbConnect {
+abstract class DbConnect {
 
 	private static $_loader;
 	protected $db;

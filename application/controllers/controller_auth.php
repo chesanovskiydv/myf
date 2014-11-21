@@ -38,7 +38,8 @@ class Controller_Auth extends Controller
 				}
 				else
 				{
-					$this->auth_data['error'] = "Не правильный логин или пароль";
+					ErrorRegistry::set('auth', Localize::t('auth'));
+					//$this->auth_data['error'] = "Не правильный логин или пароль";
 				}
 			}
 		}

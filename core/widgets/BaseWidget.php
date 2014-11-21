@@ -15,4 +15,3 @@ class BaseWidget
 		return null;
 	}
 }
-?>

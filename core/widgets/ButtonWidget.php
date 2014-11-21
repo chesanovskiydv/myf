@@ -2,11 +2,15 @@
 namespace App\widgetBtn;
 class ButtonWidget extends \BaseWidget
 {
-	public function button($type='button', $text="", $style=array('class'=>'btn'))
+	public function button($type='button', $text="", $style=array())
 	{
-		?>
-		<button type="<?=$type; ?>" <?=$this->getStyleString($style); ?>><?=$text; ?></button>
-		<?php
+		echo "<button {$this->getStyleString($style)} type=\"$type\">$text</button>";
+	}
+
+	public function bootstrapButton($type='button', $text="", $style=array())
+	{
+		$style['class'] = isset($style['class']) ? $style['class'].' btn' : 'btn';
+		echo "<button {$this->getStyleString($style)} type=\"$type\">$text</button>";
 	}
 }
 ?>
