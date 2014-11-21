@@ -29,6 +29,43 @@ class ArrayLoadSaver
 		return $this->dataArray;
 	}
 	
+	public function getLines($filename)
+    {
+        try {
+            $handle = fopen($filename, 'r') or die ( "Can't open the file $filename" );
+            while (!feof($handle)) {
+				$ar = fgets($handle);
+				yield substr($ar, 0, strlen($ar)-2);
+            }
+        } finally {
+            fclose($handle);
+        }
+    }
+	
+	public function setLines($filename, $rewrite) 
+	{
+		try{
+			if($rewrite)
+			{
+				$handle = fopen($filename, 'a');
+			}
+			else
+			{
+				$handle = fopen($filename, 'w');
+			}
+			if (!$handle) throw new Exception("Can't open the file \"$filename\"");
+			while (true) {         
+				$line = yield;     
+				fwrite($handle, $line);
+			}
+	    }catch (Exception $e) {
+			echo "Error (File: ".$e->getFile().", line ".
+					$e->getLine()."): ".$e->getMessage(), "\n";
+		}	finally {
+            fclose($handle);
+        }
+	}
+	
 /**
  * метод для преобразования данных из файла в массив
  *
@@ -51,16 +88,10 @@ class ArrayLoadSaver
 			echo "Error : ".$e->getMessage(), "\n";
 			return false;
 		}	
-		$f=fopen($filename,"rt")  or die ( "Can't open the file $filename" );	
-		$j=0;
-		while(!feof($f))
+		foreach($this->getLines($filename) as $value)
 		{
-			$ar[$j]=fgets($f);
-			$ar[$j]=substr($ar[$j], 0, strlen($ar[$j])-1);
-			$j++;
+			$this->dataArray[]=$value;
 		}
-		fclose($f);
-        $this->dataArray=$ar;
 		return $this;
 	}
 	
@@ -87,28 +118,11 @@ class ArrayLoadSaver
 			$filename = substr($filename,1);
 	//		$filename = dirname(__FILE__).'/'.$filename;
 		}
-		try {
-			if($this->rewrite)
-			{
-				$handle = fopen($filename, 'a');
-			}
-			else
-			{
-				$handle = fopen($filename, 'w');
-			}
-			 if (!$handle) throw new Exception("Can't open the file \"$filename\"");
-		}
-		catch (Exception $e) {
-			  //	echo 'Error: ',  $e->getMessage(), "\n";
-			echo "Error (File: ".$e->getFile().", line ".
-					$e->getLine()."): ".$e->getMessage(), "\n";
-			return false;
-		}
+		$saveToFile = $this->setLines($filename, $this->rewrite);
 		foreach($this->dataArray as $value)
 		{
-			fwrite($handle, $value."\r\n");
+			$saveToFile->send($value."\r\n");
 		}
-		fclose($handle);
 		return $this;
 	}
 	
@@ -122,4 +136,3 @@ class ArrayLoadSaver
 		}
 	}
 }
-?>

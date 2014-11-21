@@ -16,37 +16,37 @@ class CsvAssistant
 	 */
 	public function saveCsvFile($fileName,$data, $rewrite=true)
 	{
-		$CSVFileStream = $this->OpenCsvFile($fileName,$rewrite);
-		$this->WriteCsvFile($CSVFileStream,$data);
-		$this->CloseCsvFile($CSVFileStream);
-	}
-	
-	// Открывает Csv фаил врзвращая поток на него
-	protected	function OpenCsvFile($fileName, $rewrite)
-	{
-		if($rewrite){
-			$CSVFileStream=fopen($fileName,"at");
-		}
-		if(!$rewrite){
-			$CSVFileStream=fopen($fileName,"wt");
-		}
-		return $CSVFileStream;
-	}
-	
-	// Закрывает Csv фаил
-	protected function CloseCsvFile($CSVFileStream)
-	{
-		fclose($CSVFileStream);
-	}
-	
-	//Записывает данные в csv фаил
-	protected function WriteCsvFile($CSVFileStream,$data)
-	{
+		$saveToCsvFile = $this->setCsvLines($fileName, $rewrite);
 		foreach($data as $value)
 		{
-			fputcsv($CSVFileStream, $value);
+			$saveToCsvFile->send($value);
 		}
 	}
+	
+	public function setCsvLines($filename, $rewrite) 
+	{
+		try{
+			if($rewrite)
+			{
+				$handle = fopen($filename, 'a');
+			}
+			else
+			{
+				$handle = fopen($filename, 'w');
+			}
+			if (!$handle) throw new Exception("Can't open the file \"$filename\"");
+			while (true) {         
+				$line = yield;     
+				fputcsv($handle, $line);
+			}
+	    }catch (Exception $e) {
+			echo "Error (File: ".$e->getFile().", line ".
+					$e->getLine()."): ".$e->getMessage(), "\n";
+		}	finally {
+            fclose($handle);
+        }
+	}
+	
 	
 	public static function init($className=__CLASS__)
 	{
@@ -58,4 +58,3 @@ class CsvAssistant
 		}
 	}
 }
-?>
