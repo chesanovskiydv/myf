@@ -13,7 +13,7 @@ class Localize {
 	
 	public static function t($var)
 	{
-		$pathTOfile = __DIR__.'/'.self::getLocal().'/translate.json';
+		$pathTOfile = __DIR__.'/../../application/localize/'.self::getLocal().'/translate.json';
 		if(file_exists($pathTOfile))
 		{
 			$fileContents=file_get_contents($pathTOfile);
